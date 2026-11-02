@@ -1,0 +1,12 @@
+# OPTIONAL NLP dependencies for POST /api/v1/nlp/predict (Phase 3.8).
+# The rest of the backend does NOT need these - requirements.txt is unchanged and the API runs
+# normally without them (the NLP endpoint then answers 503 while NLP_ENABLED=false).
+#
+# Versions match the environment in which the Phase 3.7 adapter was trained and evaluated.
+# CPU only. For a smaller CPU-only PyTorch download you can install it first from the CPU index:
+#     pip install torch==2.13.0 --index-url https://download.pytorch.org/whl/cpu
+# then:
+#     pip install -r requirements-nlp.txt
+torch==2.13.0
+transformers==5.15.1
+peft==0.21.2

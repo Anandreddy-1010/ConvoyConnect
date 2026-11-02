@@ -1,0 +1,240 @@
+{"id": "cc_challenge_0001", "text": "yo im on E, gotta find gas quick", "true_label": "REFUELING", "raw_reply": "REFUELING", "parsed_prediction": "REFUELING"}
+{"id": "cc_challenge_0002", "text": "tank's basically empty, someone spot a pump nearby?", "true_label": "REFUELING", "raw_reply": "REFUELING", "parsed_prediction": "REFUELING"}
+{"id": "cc_challenge_0003", "text": "running low here, don't wanna push it much further", "true_label": "REFUELING", "raw_reply": "REFUELING", "parsed_prediction": "REFUELING"}
+{"id": "cc_challenge_0004", "text": "hey does anyone know if there's a station up ahead, im almost dry", "true_label": "REFUELING", "raw_reply": "REFUELING", "parsed_prediction": "REFUELING"}
+{"id": "cc_challenge_0005", "text": "gas light's been on for a bit now ngl", "true_label": "REFUELING", "raw_reply": "REFUELING", "parsed_prediction": "REFUELING"}
+{"id": "cc_challenge_0006", "text": "might have to peel off soon, fuel's getting sketchy", "true_label": "REFUELING", "raw_reply": "REFUELING", "parsed_prediction": "REFUELING"}
+{"id": "cc_challenge_0007", "text": "not gonna make it another 20 without topping up", "true_label": "REFUELING", "raw_reply": "FALLING_BEHIND", "parsed_prediction": "FALLING_BEHIND"}
+{"id": "cc_challenge_0008", "text": "im on fumes fr, need to stop asap", "true_label": "REFUELING", "raw_reply": "FALLING_BEHIND", "parsed_prediction": "FALLING_BEHIND"}
+{"id": "cc_challenge_0009", "text": "anyone else need juice or is it just me", "true_label": "REFUELING", "raw_reply": "REFUELING", "parsed_prediction": "REFUELING"}
+{"id": "cc_challenge_0010", "text": "starting to sweat a little, tank's reading empty", "true_label": "REFUELING", "raw_reply": "REFUELING", "parsed_prediction": "REFUELING"}
+{"id": "cc_challenge_0011", "text": "we should prob gas up before the highway stretch", "true_label": "REFUELING", "raw_reply": "REFUELING", "parsed_prediction": "REFUELING"}
+{"id": "cc_challenge_0012", "text": "my bike's thirsty, need a pump soon", "true_label": "REFUELING", "raw_reply": "REFUELING", "parsed_prediction": "REFUELING"}
+{"id": "cc_challenge_0013", "text": "cutting it close on fuel ngl", "true_label": "REFUELING", "raw_reply": "REFUELING", "parsed_prediction": "REFUELING"}
+{"id": "cc_challenge_0014", "text": "im gonna need a splash of gas before we go further", "true_label": "REFUELING", "raw_reply": "REFUELING", "parsed_prediction": "REFUELING"}
+{"id": "cc_challenge_0015", "text": "low tank alert lol, need a stop", "true_label": "REFUELING", "raw_reply": "REFUELING", "parsed_prediction": "REFUELING"}
+{"id": "cc_challenge_0016", "text": "think i miscalculated my range, need gas", "true_label": "REFUELING", "raw_reply": "REFUELING", "parsed_prediction": "REFUELING"}
+{"id": "cc_challenge_0017", "text": "not sure ill make the next town without filling up", "true_label": "REFUELING", "raw_reply": "REFUELING", "parsed_prediction": "REFUELING"}
+{"id": "cc_challenge_0018", "text": "getting nervous about fuel, been a while since last stop", "true_label": "REFUELING", "raw_reply": "FALLING_BEHIND", "parsed_prediction": "FALLING_BEHIND"}
+{"id": "cc_challenge_0019", "text": "can we detour for a quick fill, im running dry", "true_label": "REFUELING", "raw_reply": "REFUELING", "parsed_prediction": "REFUELING"}
+{"id": "cc_challenge_0020", "text": "petrol's low, might stall if we dont stop soon", "true_label": "REFUELING", "raw_reply": "REFUELING", "parsed_prediction": "REFUELING"}
+{"id": "cc_challenge_0021", "text": "my legs are done, need to hop off for a bit", "true_label": "REST_BREAK", "raw_reply": "REST_BREAK", "parsed_prediction": "REST_BREAK"}
+{"id": "cc_challenge_0022", "text": "can we chill somewhere, my back's killing me", "true_label": "REST_BREAK", "raw_reply": "REST_BREAK", "parsed_prediction": "REST_BREAK"}
+{"id": "cc_challenge_0023", "text": "gotta stretch, been sitting too long", "true_label": "REST_BREAK", "raw_reply": "REST_BREAK", "parsed_prediction": "REST_BREAK"}
+{"id": "cc_challenge_0024", "text": "need a minute off the bike, hands are cramping", "true_label": "REST_BREAK", "raw_reply": "REST_BREAK", "parsed_prediction": "REST_BREAK"}
+{"id": "cc_challenge_0025", "text": "im gonna need a bathroom stop whenever's convenient", "true_label": "REST_BREAK", "raw_reply": "REST_BREAK", "parsed_prediction": "REST_BREAK"}
+{"id": "cc_challenge_0026", "text": "starting to lose focus, might need a breather", "true_label": "REST_BREAK", "raw_reply": "REST_BREAK", "parsed_prediction": "REST_BREAK"}
+{"id": "cc_challenge_0027", "text": "anyone else feeling stiff or just me lol", "true_label": "REST_BREAK", "raw_reply": "GENERAL", "parsed_prediction": "GENERAL"}
+{"id": "cc_challenge_0028", "text": "lets pull off for a sec, need to walk it off", "true_label": "REST_BREAK", "raw_reply": "REST_BREAK", "parsed_prediction": "REST_BREAK"}
+{"id": "cc_challenge_0029", "text": "my legs are numb ngl, need a break", "true_label": "REST_BREAK", "raw_reply": "REST_BREAK", "parsed_prediction": "REST_BREAK"}
+{"id": "cc_challenge_0030", "text": "could use five to stretch before we keep going", "true_label": "REST_BREAK", "raw_reply": "REST_BREAK", "parsed_prediction": "REST_BREAK"}
+{"id": "cc_challenge_0031", "text": "getting a little sore, wouldnt mind a pause", "true_label": "REST_BREAK", "raw_reply": "REST_BREAK", "parsed_prediction": "REST_BREAK"}
+{"id": "cc_challenge_0032", "text": "need to shake out my hands, they're asleep", "true_label": "REST_BREAK", "raw_reply": "REST_BREAK", "parsed_prediction": "REST_BREAK"}
+{"id": "cc_challenge_0033", "text": "im gassed, not from fuel, from sitting lol, need a stop", "true_label": "REST_BREAK", "raw_reply": "EMERGENCY", "parsed_prediction": "EMERGENCY"}
+{"id": "cc_challenge_0034", "text": "quick pit stop for my legs?", "true_label": "REST_BREAK", "raw_reply": "EMERGENCY", "parsed_prediction": "EMERGENCY"}
+{"id": "cc_challenge_0035", "text": "been a long stretch, my body needs a sec", "true_label": "REST_BREAK", "raw_reply": "REST_BREAK", "parsed_prediction": "REST_BREAK"}
+{"id": "cc_challenge_0036", "text": "not urgent but a break would be nice soon", "true_label": "REST_BREAK", "raw_reply": "REST_BREAK", "parsed_prediction": "REST_BREAK"}
+{"id": "cc_challenge_0037", "text": "my neck's stiff, need to roll it out somewhere", "true_label": "REST_BREAK", "raw_reply": "EMERGENCY", "parsed_prediction": "EMERGENCY"}
+{"id": "cc_challenge_0038", "text": "can we take five, im getting restless", "true_label": "REST_BREAK", "raw_reply": "REST_BREAK", "parsed_prediction": "REST_BREAK"}
+{"id": "cc_challenge_0039", "text": "need to unkink before the next leg of this", "true_label": "REST_BREAK", "raw_reply": "REGROUP_REQUEST", "parsed_prediction": "REGROUP_REQUEST"}
+{"id": "cc_challenge_0040", "text": "honestly could use a nap not just a break lol", "true_label": "REST_BREAK", "raw_reply": "REST_BREAK", "parsed_prediction": "REST_BREAK"}
+{"id": "cc_challenge_0041", "text": "my stomach's yelling at me, feed me soon pls", "true_label": "FOOD_BREAK", "raw_reply": "REFUELING", "parsed_prediction": "REFUELING"}
+{"id": "cc_challenge_0042", "text": "starving over here ngl", "true_label": "FOOD_BREAK", "raw_reply": "NESTED", "parsed_prediction": "PARSE_FAILURE"}
+{"id": "cc_challenge_0043", "text": "havent eaten since this morning, need something", "true_label": "FOOD_BREAK", "raw_reply": "FOOD_BREAK", "parsed_prediction": "FOOD_BREAK"}
+{"id": "cc_challenge_0044", "text": "anyone else hangry or just me", "true_label": "FOOD_BREAK", "raw_reply": "GENERAL", "parsed_prediction": "GENERAL"}
+{"id": "cc_challenge_0045", "text": "could go for literally anything edible rn", "true_label": "FOOD_BREAK", "raw_reply": "GENERAL", "parsed_prediction": "GENERAL"}
+{"id": "cc_challenge_0046", "text": "lets find some grub before i get cranky", "true_label": "FOOD_BREAK", "raw_reply": "FOOD_BREAK", "parsed_prediction": "FOOD_BREAK"}
+{"id": "cc_challenge_0047", "text": "im running on empty, and not just the bike lol", "true_label": "FOOD_BREAK", "raw_reply": "REFUELING", "parsed_prediction": "REFUELING"}
+{"id": "cc_challenge_0048", "text": "food stop whenever works, im fading", "true_label": "FOOD_BREAK", "raw_reply": "FOOD_BREAK", "parsed_prediction": "FOOD_BREAK"}
+{"id": "cc_challenge_0049", "text": "getting shaky, probably need to eat something", "true_label": "FOOD_BREAK", "raw_reply": "FOOD_BREAK", "parsed_prediction": "FOOD_BREAK"}
+{"id": "cc_challenge_0050", "text": "saw a place back there, worth turning around for food", "true_label": "FOOD_BREAK", "raw_reply": "FOOD_BREAK", "parsed_prediction": "FOOD_BREAK"}
+{"id": "cc_challenge_0051", "text": "cravings are winning, need a snack asap", "true_label": "FOOD_BREAK", "raw_reply": "FOOD_BREAK", "parsed_prediction": "FOOD_BREAK"}
+{"id": "cc_challenge_0052", "text": "not gonna lie i could eat a whole meal rn", "true_label": "FOOD_BREAK", "raw_reply": "GENERAL", "parsed_prediction": "GENERAL"}
+{"id": "cc_challenge_0053", "text": "lunch o'clock? im starving", "true_label": "FOOD_BREAK", "raw_reply": "FOOD_BREAK", "parsed_prediction": "FOOD_BREAK"}
+{"id": "cc_challenge_0054", "text": "my energy's tanking, need calories stat", "true_label": "FOOD_BREAK", "raw_reply": "ENERGY_LEVEL", "parsed_prediction": "PARSE_FAILURE"}
+{"id": "cc_challenge_0055", "text": "can we swing by somewhere for a bite", "true_label": "FOOD_BREAK", "raw_reply": "FOOD_BREAK", "parsed_prediction": "FOOD_BREAK"}
+{"id": "cc_challenge_0056", "text": "skipped breakfast, big mistake, need food", "true_label": "FOOD_BREAK", "raw_reply": "FOOD_BREAK", "parsed_prediction": "FOOD_BREAK"}
+{"id": "cc_challenge_0057", "text": "im getting hangry, fair warning", "true_label": "FOOD_BREAK", "raw_reply": "GENERAL", "parsed_prediction": "GENERAL"}
+{"id": "cc_challenge_0058", "text": "need fuel for me too, not just the bike", "true_label": "FOOD_BREAK", "raw_reply": "REFUELING", "parsed_prediction": "REFUELING"}
+{"id": "cc_challenge_0059", "text": "anywhere with food works honestly, just need to eat", "true_label": "FOOD_BREAK", "raw_reply": "FOOD_BREAK", "parsed_prediction": "FOOD_BREAK"}
+{"id": "cc_challenge_0060", "text": "stomach's growling loud enough for everyone to hear probably", "true_label": "FOOD_BREAK", "raw_reply": "EMERGENCY", "parsed_prediction": "EMERGENCY"}
+{"id": "cc_challenge_0061", "text": "somethings off with my ride, not sure what", "true_label": "VEHICLE_PROBLEM", "raw_reply": "VEHICLE_PROBLEM", "parsed_prediction": "VEHICLE_PROBLEM"}
+{"id": "cc_challenge_0062", "text": "hearing a weird clunk every time i brake", "true_label": "VEHICLE_PROBLEM", "raw_reply": "VEHICLE_PROBLEM", "parsed_prediction": "VEHICLE_PROBLEM"}
+{"id": "cc_challenge_0063", "text": "my bike feels wobbly all of a sudden", "true_label": "VEHICLE_PROBLEM", "raw_reply": "VEHICLE_PROBLEM", "parsed_prediction": "VEHICLE_PROBLEM"}
+{"id": "cc_challenge_0064", "text": "dashboard light just lit up, not sure which one", "true_label": "VEHICLE_PROBLEM", "raw_reply": "GENERAL", "parsed_prediction": "GENERAL"}
+{"id": "cc_challenge_0065", "text": "smells like something's burning, might wanna check", "true_label": "VEHICLE_PROBLEM", "raw_reply": "EMERGENCY", "parsed_prediction": "EMERGENCY"}
+{"id": "cc_challenge_0066", "text": "engine's making a noise it shouldnt be making", "true_label": "VEHICLE_PROBLEM", "raw_reply": "VEHICLE_PROBLEM", "parsed_prediction": "VEHICLE_PROBLEM"}
+{"id": "cc_challenge_0067", "text": "losing power on inclines, feels off", "true_label": "VEHICLE_PROBLEM", "raw_reply": "FALLING_BEHIND", "parsed_prediction": "FALLING_BEHIND"}
+{"id": "cc_challenge_0068", "text": "front end feels loose, might be an issue", "true_label": "VEHICLE_PROBLEM", "raw_reply": "VEHICLE_PROBLEM", "parsed_prediction": "VEHICLE_PROBLEM"}
+{"id": "cc_challenge_0069", "text": "vibrating way more than usual", "true_label": "VEHICLE_PROBLEM", "raw_reply": "EMERGENCY", "parsed_prediction": "EMERGENCY"}
+{"id": "cc_challenge_0070", "text": "think something's leaking, seeing drips", "true_label": "VEHICLE_PROBLEM", "raw_reply": "VEHICLE_PROBLEM", "parsed_prediction": "VEHICLE_PROBLEM"}
+{"id": "cc_challenge_0071", "text": "clutch feels weird today, not engaging right", "true_label": "VEHICLE_PROBLEM", "raw_reply": "VEHICLE_PROBLEM", "parsed_prediction": "VEHICLE_PROBLEM"}
+{"id": "cc_challenge_0072", "text": "brakes are squealing hard, might need a look", "true_label": "VEHICLE_PROBLEM", "raw_reply": "VEHICLE_PROBLEM", "parsed_prediction": "VEHICLE_PROBLEM"}
+{"id": "cc_challenge_0073", "text": "bike's overheating i think, temp gauge is high", "true_label": "VEHICLE_PROBLEM", "raw_reply": "VEHICLE_PROBLEM", "parsed_prediction": "VEHICLE_PROBLEM"}
+{"id": "cc_challenge_0074", "text": "chain sounds like its grinding", "true_label": "VEHICLE_PROBLEM", "raw_reply": "VEHICLE_PROBLEM", "parsed_prediction": "VEHICLE_PROBLEM"}
+{"id": "cc_challenge_0075", "text": "steering feels stiff, not normal", "true_label": "VEHICLE_PROBLEM", "raw_reply": "EMERGENCY", "parsed_prediction": "EMERGENCY"}
+{"id": "cc_challenge_0076", "text": "battery light flickering on and off", "true_label": "VEHICLE_PROBLEM", "raw_reply": "VEHICLE_PROBLEM", "parsed_prediction": "VEHICLE_PROBLEM"}
+{"id": "cc_challenge_0077", "text": "tire pressure feels low, might be a slow leak", "true_label": "VEHICLE_PROBLEM", "raw_reply": "VEHICLE_PROBLEM", "parsed_prediction": "VEHICLE_PROBLEM"}
+{"id": "cc_challenge_0078", "text": "exhaust sounds different, louder than usual", "true_label": "VEHICLE_PROBLEM", "raw_reply": "VEHICLE_PROBLEM", "parsed_prediction": "VEHICLE_PROBLEM"}
+{"id": "cc_challenge_0079", "text": "bike stalled for a sec back there, weird", "true_label": "VEHICLE_PROBLEM", "raw_reply": "VEHICLE_PROBLEM", "parsed_prediction": "VEHICLE_PROBLEM"}
+{"id": "cc_challenge_0080", "text": "somethings rattling loose somewhere, cant tell what", "true_label": "VEHICLE_PROBLEM", "raw_reply": "VEHICLE_PROBLEM", "parsed_prediction": "VEHICLE_PROBLEM"}
+{"id": "cc_challenge_0081", "text": "not moving at all up here, total standstill", "true_label": "TRAFFIC_DELAY", "raw_reply": "STANDBY", "parsed_prediction": "PARSE_FAILURE"}
+{"id": "cc_challenge_0082", "text": "everyone's just parked on the highway rn", "true_label": "TRAFFIC_DELAY", "raw_reply": "REGROUP_REQUEST", "parsed_prediction": "REGROUP_REQUEST"}
+{"id": "cc_challenge_0083", "text": "this jam is not ending anytime soon i think", "true_label": "TRAFFIC_DELAY", "raw_reply": "EMERGENCY", "parsed_prediction": "EMERGENCY"}
+{"id": "cc_challenge_0084", "text": "cars backed up as far as i can see", "true_label": "TRAFFIC_DELAY", "raw_reply": "TRAFFIC_DELAY", "parsed_prediction": "TRAFFIC_DELAY"}
+{"id": "cc_challenge_0085", "text": "we might be here a while, traffic's brutal", "true_label": "TRAFFIC_DELAY", "raw_reply": "TRAFFIC_DELAY", "parsed_prediction": "TRAFFIC_DELAY"}
+{"id": "cc_challenge_0086", "text": "construction zone eating up all our time", "true_label": "TRAFFIC_DELAY", "raw_reply": "TRAFFIC_DELAY", "parsed_prediction": "TRAFFIC_DELAY"}
+{"id": "cc_challenge_0087", "text": "somethings clearly happened up ahead, dead stop", "true_label": "TRAFFIC_DELAY", "raw_reply": "EMERGENCY", "parsed_prediction": "EMERGENCY"}
+{"id": "cc_challenge_0088", "text": "creeping along at like 5mph", "true_label": "TRAFFIC_DELAY", "raw_reply": "FALLING_BEHIND", "parsed_prediction": "FALLING_BEHIND"}
+{"id": "cc_challenge_0089", "text": "this detour is adding way more time than expected", "true_label": "TRAFFIC_DELAY", "raw_reply": "TRAFFIC_DELAY", "parsed_prediction": "TRAFFIC_DELAY"}
+{"id": "cc_challenge_0090", "text": "everyone merging is slowing things to a crawl", "true_label": "TRAFFIC_DELAY", "raw_reply": "TRAFFIC_DELAY", "parsed_prediction": "TRAFFIC_DELAY"}
+{"id": "cc_challenge_0091", "text": "lights out at the intersection, chaos ensuing", "true_label": "TRAFFIC_DELAY", "raw_reply": "TRAFFIC_DELAY", "parsed_prediction": "TRAFFIC_DELAY"}
+{"id": "cc_challenge_0092", "text": "gonna be way later than planned at this rate", "true_label": "TRAFFIC_DELAY", "raw_reply": "FALLING_BEHIND", "parsed_prediction": "FALLING_BEHIND"}
+{"id": "cc_challenge_0093", "text": "road's basically a parking lot rn", "true_label": "TRAFFIC_DELAY", "raw_reply": "ROAD_CONGESTION", "parsed_prediction": "PARSE_FAILURE"}
+{"id": "cc_challenge_0094", "text": "seems like an accident up there causing this", "true_label": "TRAFFIC_DELAY", "raw_reply": "EMERGENCY", "parsed_prediction": "EMERGENCY"}
+{"id": "cc_challenge_0095", "text": "this is taking forever, hope it clears soon", "true_label": "TRAFFIC_DELAY", "raw_reply": "FALLING_BEHIND", "parsed_prediction": "FALLING_BEHIND"}
+{"id": "cc_challenge_0096", "text": "barely moved in the last ten minutes", "true_label": "TRAFFIC_DELAY", "raw_reply": "FALLING_BEHIND", "parsed_prediction": "FALLING_BEHIND"}
+{"id": "cc_challenge_0097", "text": "traffic's insane today, not sure why", "true_label": "TRAFFIC_DELAY", "raw_reply": "TRAFFIC_DELAY", "parsed_prediction": "TRAFFIC_DELAY"}
+{"id": "cc_challenge_0098", "text": "we're stuck, nothing to do but wait it out", "true_label": "TRAFFIC_DELAY", "raw_reply": "FALLING_BEHIND", "parsed_prediction": "FALLING_BEHIND"}
+{"id": "cc_challenge_0099", "text": "this backup came out of nowhere", "true_label": "TRAFFIC_DELAY", "raw_reply": "TRAFFIC_DELAY", "parsed_prediction": "TRAFFIC_DELAY"}
+{"id": "cc_challenge_0100", "text": "gridlock city up here, ugh", "true_label": "TRAFFIC_DELAY", "raw_reply": "TRAFFIC_DELAY", "parsed_prediction": "TRAFFIC_DELAY"}
+{"id": "cc_challenge_0101", "text": "cant keep pace, yall go on without me", "true_label": "FALLING_BEHIND", "raw_reply": "FALLING_BEHIND", "parsed_prediction": "FALLING_BEHIND"}
+{"id": "cc_challenge_0102", "text": "losing you guys more and more each minute", "true_label": "FALLING_BEHIND", "raw_reply": "FALLING_BEHIND", "parsed_prediction": "FALLING_BEHIND"}
+{"id": "cc_challenge_0103", "text": "not sure ill catch up at this rate", "true_label": "FALLING_BEHIND", "raw_reply": "FALLING_BEHIND", "parsed_prediction": "FALLING_BEHIND"}
+{"id": "cc_challenge_0104", "text": "gap's growing, my bad", "true_label": "FALLING_BEHIND", "raw_reply": "EMERGENCY", "parsed_prediction": "EMERGENCY"}
+{"id": "cc_challenge_0105", "text": "struggling to keep up today for some reason", "true_label": "FALLING_BEHIND", "raw_reply": "FALLING_BEHIND", "parsed_prediction": "FALLING_BEHIND"}
+{"id": "cc_challenge_0106", "text": "yall are pulling way ahead of me", "true_label": "FALLING_BEHIND", "raw_reply": "FALLING_BEHIND", "parsed_prediction": "FALLING_BEHIND"}
+{"id": "cc_challenge_0107", "text": "im dragging today, sorry", "true_label": "FALLING_BEHIND", "raw_reply": "FALLING_BEHIND", "parsed_prediction": "FALLING_BEHIND"}
+{"id": "cc_challenge_0108", "text": "cant match the speed, go on ill find you", "true_label": "FALLING_BEHIND", "raw_reply": "FALLING_BEHIND", "parsed_prediction": "FALLING_BEHIND"}
+{"id": "cc_challenge_0109", "text": "feeling like the slow one today ngl", "true_label": "FALLING_BEHIND", "raw_reply": "FALLING_BEHIND", "parsed_prediction": "FALLING_BEHIND"}
+{"id": "cc_challenge_0110", "text": "distance between us keeps increasing", "true_label": "FALLING_BEHIND", "raw_reply": "FALLING_BEHIND", "parsed_prediction": "FALLING_BEHIND"}
+{"id": "cc_challenge_0111", "text": "im eating everyone's dust back here lol", "true_label": "FALLING_BEHIND", "raw_reply": "FOOD_BREAK", "parsed_prediction": "FOOD_BREAK"}
+{"id": "cc_challenge_0112", "text": "having a rough time keeping pace", "true_label": "FALLING_BEHIND", "raw_reply": "FALLING_BEHIND", "parsed_prediction": "FALLING_BEHIND"}
+{"id": "cc_challenge_0113", "text": "yall are way up there now, ill catch up eventually", "true_label": "FALLING_BEHIND", "raw_reply": "FALLING_BEHIND", "parsed_prediction": "FALLING_BEHIND"}
+{"id": "cc_challenge_0114", "text": "cant push any faster right now", "true_label": "FALLING_BEHIND", "raw_reply": "FALLING_BEHIND", "parsed_prediction": "FALLING_BEHIND"}
+{"id": "cc_challenge_0115", "text": "im solidly in last place at this point", "true_label": "FALLING_BEHIND", "raw_reply": "FALLING_BEHIND", "parsed_prediction": "FALLING_BEHIND"}
+{"id": "cc_challenge_0116", "text": "keep losing sight of you guys", "true_label": "FALLING_BEHIND", "raw_reply": "LOST", "parsed_prediction": "LOST"}
+{"id": "cc_challenge_0117", "text": "not my day for keeping up apparently", "true_label": "FALLING_BEHIND", "raw_reply": "GENERAL", "parsed_prediction": "GENERAL"}
+{"id": "cc_challenge_0118", "text": "im way further back than id like to be", "true_label": "FALLING_BEHIND", "raw_reply": "FALLING_BEHIND", "parsed_prediction": "FALLING_BEHIND"}
+{"id": "cc_challenge_0119", "text": "cant close this gap no matter what", "true_label": "FALLING_BEHIND", "raw_reply": "FALLING_BEHIND", "parsed_prediction": "FALLING_BEHIND"}
+{"id": "cc_challenge_0120", "text": "im the caboose today it seems", "true_label": "FALLING_BEHIND", "raw_reply": "GENERAL", "parsed_prediction": "GENERAL"}
+{"id": "cc_challenge_0121", "text": "wait i dont recognize any of this", "true_label": "LOST", "raw_reply": "GENERAL", "parsed_prediction": "GENERAL"}
+{"id": "cc_challenge_0122", "text": "pretty sure i took a wrong turn somewhere", "true_label": "LOST", "raw_reply": "LOST", "parsed_prediction": "LOST"}
+{"id": "cc_challenge_0123", "text": "no clue where you guys ended up", "true_label": "LOST", "raw_reply": "LOST", "parsed_prediction": "LOST"}
+{"id": "cc_challenge_0124", "text": "this doesnt look right at all", "true_label": "LOST", "raw_reply": "GENERAL", "parsed_prediction": "GENERAL"}
+{"id": "cc_challenge_0125", "text": "i think i lost the trail back there", "true_label": "LOST", "raw_reply": "LOST", "parsed_prediction": "LOST"}
+{"id": "cc_challenge_0126", "text": "cant find anyone, starting to worry", "true_label": "LOST", "raw_reply": "LOST", "parsed_prediction": "LOST"}
+{"id": "cc_challenge_0127", "text": "not sure which way i even came from", "true_label": "LOST", "raw_reply": "LOST", "parsed_prediction": "LOST"}
+{"id": "cc_challenge_0128", "text": "this road wasnt part of the plan i think", "true_label": "LOST", "raw_reply": "LOST", "parsed_prediction": "LOST"}
+{"id": "cc_challenge_0129", "text": "somehow ended up somewhere unexpected", "true_label": "LOST", "raw_reply": "LOST", "parsed_prediction": "LOST"}
+{"id": "cc_challenge_0130", "text": "totally turned around right now", "true_label": "LOST", "raw_reply": "LOST", "parsed_prediction": "LOST"}
+{"id": "cc_challenge_0131", "text": "no idea if im even close to you guys", "true_label": "LOST", "raw_reply": "LOST", "parsed_prediction": "LOST"}
+{"id": "cc_challenge_0132", "text": "missed something back there i think", "true_label": "LOST", "raw_reply": "LOST", "parsed_prediction": "LOST"}
+{"id": "cc_challenge_0133", "text": "this doesnt match the route at all", "true_label": "LOST", "raw_reply": "GENERAL", "parsed_prediction": "GENERAL"}
+{"id": "cc_challenge_0134", "text": "im guessing at this point which way to go", "true_label": "LOST", "raw_reply": "GENERAL", "parsed_prediction": "GENERAL"}
+{"id": "cc_challenge_0135", "text": "cant tell if im ahead or behind anymore", "true_label": "LOST", "raw_reply": "FALLING_BEHIND", "parsed_prediction": "FALLING_BEHIND"}
+{"id": "cc_challenge_0136", "text": "signal's been spotty, not sure where anyone is", "true_label": "LOST", "raw_reply": "TRAFFIC_DELAY", "parsed_prediction": "TRAFFIC_DELAY"}
+{"id": "cc_challenge_0137", "text": "took an exit i probably shouldnt have", "true_label": "LOST", "raw_reply": "TRAFFIC_DELAY", "parsed_prediction": "TRAFFIC_DELAY"}
+{"id": "cc_challenge_0138", "text": "everything looks unfamiliar suddenly", "true_label": "LOST", "raw_reply": "GENERAL", "parsed_prediction": "GENERAL"}
+{"id": "cc_challenge_0139", "text": "starting to think i went off course", "true_label": "LOST", "raw_reply": "LOST", "parsed_prediction": "LOST"}
+{"id": "cc_challenge_0140", "text": "not sure how i ended up here honestly", "true_label": "LOST", "raw_reply": "LOST", "parsed_prediction": "LOST"}
+{"id": "cc_challenge_0141", "text": "everyone hold up somewhere so we can reset", "true_label": "REGROUP_REQUEST", "raw_reply": "REGROUP_REQUEST", "parsed_prediction": "REGROUP_REQUEST"}
+{"id": "cc_challenge_0142", "text": "lets all bunch back together before continuing", "true_label": "REGROUP_REQUEST", "raw_reply": "REGROUP_REQUEST", "parsed_prediction": "REGROUP_REQUEST"}
+{"id": "cc_challenge_0143", "text": "getting too spread out, need to consolidate", "true_label": "REGROUP_REQUEST", "raw_reply": "REGROUP_REQUEST", "parsed_prediction": "REGROUP_REQUEST"}
+{"id": "cc_challenge_0144", "text": "can we pick a spot and wait for everyone", "true_label": "REGROUP_REQUEST", "raw_reply": "REGROUP_REQUEST", "parsed_prediction": "REGROUP_REQUEST"}
+{"id": "cc_challenge_0145", "text": "lets sync back up before the next stretch", "true_label": "REGROUP_REQUEST", "raw_reply": "REGROUP_REQUEST", "parsed_prediction": "REGROUP_REQUEST"}
+{"id": "cc_challenge_0146", "text": "we've drifted apart, time to reassemble", "true_label": "REGROUP_REQUEST", "raw_reply": "REGROUP_REQUEST", "parsed_prediction": "REGROUP_REQUEST"}
+{"id": "cc_challenge_0147", "text": "someone pick a landmark, lets meet there", "true_label": "REGROUP_REQUEST", "raw_reply": "REGROUP_REQUEST", "parsed_prediction": "REGROUP_REQUEST"}
+{"id": "cc_challenge_0148", "text": "we should all pause until everyone's together", "true_label": "REGROUP_REQUEST", "raw_reply": "REGROUP_REQUEST", "parsed_prediction": "REGROUP_REQUEST"}
+{"id": "cc_challenge_0149", "text": "getting scattered, lets fix that", "true_label": "REGROUP_REQUEST", "raw_reply": "FALLING_BEHIND", "parsed_prediction": "FALLING_BEHIND"}
+{"id": "cc_challenge_0150", "text": "propose we all stop and wait for stragglers", "true_label": "REGROUP_REQUEST", "raw_reply": "REGROUP_REQUEST", "parsed_prediction": "REGROUP_REQUEST"}
+{"id": "cc_challenge_0151", "text": "lets not lose each other, gather up somewhere", "true_label": "REGROUP_REQUEST", "raw_reply": "REGROUP_REQUEST", "parsed_prediction": "REGROUP_REQUEST"}
+{"id": "cc_challenge_0152", "text": "time to circle back together i think", "true_label": "REGROUP_REQUEST", "raw_reply": "REGROUP_REQUEST", "parsed_prediction": "REGROUP_REQUEST"}
+{"id": "cc_challenge_0153", "text": "can we designate a meeting point", "true_label": "REGROUP_REQUEST", "raw_reply": "REGROUP_REQUEST", "parsed_prediction": "REGROUP_REQUEST"}
+{"id": "cc_challenge_0154", "text": "we're too split up, lets converge", "true_label": "REGROUP_REQUEST", "raw_reply": "REGROUP_REQUEST", "parsed_prediction": "REGROUP_REQUEST"}
+{"id": "cc_challenge_0155", "text": "suggest pausing so nobody gets left behind", "true_label": "REGROUP_REQUEST", "raw_reply": "REGROUP_REQUEST", "parsed_prediction": "REGROUP_REQUEST"}
+{"id": "cc_challenge_0156", "text": "lets huddle up before pushing on", "true_label": "REGROUP_REQUEST", "raw_reply": "REGROUP_REQUEST", "parsed_prediction": "REGROUP_REQUEST"}
+{"id": "cc_challenge_0157", "text": "everybody hold position till we're all here", "true_label": "REGROUP_REQUEST", "raw_reply": "REGROUP_REQUEST", "parsed_prediction": "REGROUP_REQUEST"}
+{"id": "cc_challenge_0158", "text": "need a checkpoint so we dont lose anyone", "true_label": "REGROUP_REQUEST", "raw_reply": "REGROUP_REQUEST", "parsed_prediction": "REGROUP_REQUEST"}
+{"id": "cc_challenge_0159", "text": "lets not proceed till the group's whole again", "true_label": "REGROUP_REQUEST", "raw_reply": "FALLING_BEHIND", "parsed_prediction": "FALLING_BEHIND"}
+{"id": "cc_challenge_0160", "text": "how about we all wait up ahead somewhere", "true_label": "REGROUP_REQUEST", "raw_reply": "REGROUP_REQUEST", "parsed_prediction": "REGROUP_REQUEST"}
+{"id": "cc_challenge_0161", "text": "thinking we ditch the original stop for something else", "true_label": "DESTINATION_CHANGE", "raw_reply": "DESTINATION_CHANGE", "parsed_prediction": "DESTINATION_CHANGE"}
+{"id": "cc_challenge_0162", "text": "what if we swapped plans and went elsewhere instead", "true_label": "DESTINATION_CHANGE", "raw_reply": "DESTINATION_CHANGE", "parsed_prediction": "DESTINATION_CHANGE"}
+{"id": "cc_challenge_0163", "text": "not feeling the planned spot anymore, alternatives?", "true_label": "DESTINATION_CHANGE", "raw_reply": "FALLING_BEHIND", "parsed_prediction": "FALLING_BEHIND"}
+{"id": "cc_challenge_0164", "text": "could we pivot to a different end point", "true_label": "DESTINATION_CHANGE", "raw_reply": "DESTINATION_CHANGE", "parsed_prediction": "DESTINATION_CHANGE"}
+{"id": "cc_challenge_0165", "text": "new idea just came to mind for where to go", "true_label": "DESTINATION_CHANGE", "raw_reply": "GENERAL", "parsed_prediction": "GENERAL"}
+{"id": "cc_challenge_0166", "text": "lets scrap plan A and try somewhere else", "true_label": "DESTINATION_CHANGE", "raw_reply": "DESTINATION_CHANGE", "parsed_prediction": "DESTINATION_CHANGE"}
+{"id": "cc_challenge_0167", "text": "open to changing course if everyone's in", "true_label": "DESTINATION_CHANGE", "raw_reply": "DESTINATION_CHANGE", "parsed_prediction": "DESTINATION_CHANGE"}
+{"id": "cc_challenge_0168", "text": "what about redirecting to a different spot", "true_label": "DESTINATION_CHANGE", "raw_reply": "DESTINATION_CHANGE", "parsed_prediction": "DESTINATION_CHANGE"}
+{"id": "cc_challenge_0169", "text": "maybe we shouldnt stick to the original destination", "true_label": "DESTINATION_CHANGE", "raw_reply": "DESTINATION_CHANGE", "parsed_prediction": "DESTINATION_CHANGE"}
+{"id": "cc_challenge_0170", "text": "got a better idea for where we end up", "true_label": "DESTINATION_CHANGE", "raw_reply": "DESTINATION_CHANGE", "parsed_prediction": "DESTINATION_CHANGE"}
+{"id": "cc_challenge_0171", "text": "should we rethink where we're headed", "true_label": "DESTINATION_CHANGE", "raw_reply": "DESTINATION_CHANGE", "parsed_prediction": "DESTINATION_CHANGE"}
+{"id": "cc_challenge_0172", "text": "considering an alternate final stop", "true_label": "DESTINATION_CHANGE", "raw_reply": "DESTINATION_CHANGE", "parsed_prediction": "DESTINATION_CHANGE"}
+{"id": "cc_challenge_0173", "text": "not committed to the first plan anymore", "true_label": "DESTINATION_CHANGE", "raw_reply": "LOST", "parsed_prediction": "LOST"}
+{"id": "cc_challenge_0174", "text": "lets explore other options for the endpoint", "true_label": "DESTINATION_CHANGE", "raw_reply": "DESTINATION_CHANGE", "parsed_prediction": "DESTINATION_CHANGE"}
+{"id": "cc_challenge_0175", "text": "swapping destinations, sound good to anyone else", "true_label": "DESTINATION_CHANGE", "raw_reply": "DESTINATION_CHANGE", "parsed_prediction": "DESTINATION_CHANGE"}
+{"id": "cc_challenge_0176", "text": "thinking a change of plans might be worth it", "true_label": "DESTINATION_CHANGE", "raw_reply": "DESTINATION_CHANGE", "parsed_prediction": "DESTINATION_CHANGE"}
+{"id": "cc_challenge_0177", "text": "could go somewhere different if folks are down", "true_label": "DESTINATION_CHANGE", "raw_reply": "DESTINATION_CHANGE", "parsed_prediction": "DESTINATION_CHANGE"}
+{"id": "cc_challenge_0178", "text": "reconsidering our original target honestly", "true_label": "DESTINATION_CHANGE", "raw_reply": "DESTINATION_CHANGE", "parsed_prediction": "DESTINATION_CHANGE"}
+{"id": "cc_challenge_0179", "text": "lets not lock in the first idea, open to change", "true_label": "DESTINATION_CHANGE", "raw_reply": "GENERAL", "parsed_prediction": "GENERAL"}
+{"id": "cc_challenge_0180", "text": "what if the destination shifted a bit", "true_label": "DESTINATION_CHANGE", "raw_reply": "DESTINATION_CHANGE", "parsed_prediction": "DESTINATION_CHANGE"}
+{"id": "cc_challenge_0181", "text": "down hard, need help right now", "true_label": "EMERGENCY", "raw_reply": "EMERGENCY", "parsed_prediction": "EMERGENCY"}
+{"id": "cc_challenge_0182", "text": "someone's badly hurt, this is urgent", "true_label": "EMERGENCY", "raw_reply": "EMERGENCY", "parsed_prediction": "EMERGENCY"}
+{"id": "cc_challenge_0183", "text": "just had a serious spill, need assistance immediately", "true_label": "EMERGENCY", "raw_reply": "EMERGENCY", "parsed_prediction": "EMERGENCY"}
+{"id": "cc_challenge_0184", "text": "not okay, need help asap", "true_label": "EMERGENCY", "raw_reply": "EMERGENCY", "parsed_prediction": "EMERGENCY"}
+{"id": "cc_challenge_0185", "text": "major accident just happened, send help", "true_label": "EMERGENCY", "raw_reply": "EMERGENCY", "parsed_prediction": "EMERGENCY"}
+{"id": "cc_challenge_0186", "text": "cant get up, this is bad", "true_label": "EMERGENCY", "raw_reply": "EMERGENCY", "parsed_prediction": "EMERGENCY"}
+{"id": "cc_challenge_0187", "text": "urgent, someone call for help now", "true_label": "EMERGENCY", "raw_reply": "EMERGENCY", "parsed_prediction": "EMERGENCY"}
+{"id": "cc_challenge_0188", "text": "this is not a drill, need medical help", "true_label": "EMERGENCY", "raw_reply": "EMERGENCY", "parsed_prediction": "EMERGENCY"}
+{"id": "cc_challenge_0189", "text": "just went down hard, in real pain", "true_label": "EMERGENCY", "raw_reply": "EMERGENCY", "parsed_prediction": "EMERGENCY"}
+{"id": "cc_challenge_0190", "text": "need help immediately, something's seriously wrong", "true_label": "EMERGENCY", "raw_reply": "EMERGENCY", "parsed_prediction": "EMERGENCY"}
+{"id": "cc_challenge_0191", "text": "critical situation here, please hurry", "true_label": "EMERGENCY", "raw_reply": "EMERGENCY", "parsed_prediction": "EMERGENCY"}
+{"id": "cc_challenge_0192", "text": "hurt bad, cant move much", "true_label": "EMERGENCY", "raw_reply": "EMERGENCY", "parsed_prediction": "EMERGENCY"}
+{"id": "cc_challenge_0193", "text": "this is an emergency, need eyes on me now", "true_label": "EMERGENCY", "raw_reply": "EMERGENCY", "parsed_prediction": "EMERGENCY"}
+{"id": "cc_challenge_0194", "text": "someone's unconscious, need help fast", "true_label": "EMERGENCY", "raw_reply": "EMERGENCY", "parsed_prediction": "EMERGENCY"}
+{"id": "cc_challenge_0195", "text": "serious crash just occurred, urgent", "true_label": "EMERGENCY", "raw_reply": "EMERGENCY", "parsed_prediction": "EMERGENCY"}
+{"id": "cc_challenge_0196", "text": "in trouble here, need immediate assistance", "true_label": "EMERGENCY", "raw_reply": "EMERGENCY", "parsed_prediction": "EMERGENCY"}
+{"id": "cc_challenge_0197", "text": "cant continue, badly injured", "true_label": "EMERGENCY", "raw_reply": "EMERGENCY", "parsed_prediction": "EMERGENCY"}
+{"id": "cc_challenge_0198", "text": "this is dire, please send help now", "true_label": "EMERGENCY", "raw_reply": "EMERGENCY", "parsed_prediction": "EMERGENCY"}
+{"id": "cc_challenge_0199", "text": "just witnessed a bad wreck, need help", "true_label": "EMERGENCY", "raw_reply": "EMERGENCY", "parsed_prediction": "EMERGENCY"}
+{"id": "cc_challenge_0200", "text": "life-threatening situation, act fast please", "true_label": "EMERGENCY", "raw_reply": "EMERGENCY", "parsed_prediction": "EMERGENCY"}
+{"id": "cc_challenge_0201", "text": "all good on my end, nothing to report", "true_label": "STATUS_UPDATE", "raw_reply": "STATUS_UPDATE", "parsed_prediction": "STATUS_UPDATE"}
+{"id": "cc_challenge_0202", "text": "cruising fine, no complaints here", "true_label": "STATUS_UPDATE", "raw_reply": "STATUS_UPDATE", "parsed_prediction": "STATUS_UPDATE"}
+{"id": "cc_challenge_0203", "text": "just checking in, everything's normal", "true_label": "STATUS_UPDATE", "raw_reply": "STATUS_UPDATE", "parsed_prediction": "STATUS_UPDATE"}
+{"id": "cc_challenge_0204", "text": "doing well, keeping steady pace", "true_label": "STATUS_UPDATE", "raw_reply": "STATUS_UPDATE", "parsed_prediction": "STATUS_UPDATE"}
+{"id": "cc_challenge_0205", "text": "nothing new to share, all's well", "true_label": "STATUS_UPDATE", "raw_reply": "GENERAL", "parsed_prediction": "GENERAL"}
+{"id": "cc_challenge_0206", "text": "still on track, feeling good", "true_label": "STATUS_UPDATE", "raw_reply": "STATUS_UPDATE", "parsed_prediction": "STATUS_UPDATE"}
+{"id": "cc_challenge_0207", "text": "smooth sailing so far honestly", "true_label": "STATUS_UPDATE", "raw_reply": "GENERAL", "parsed_prediction": "GENERAL"}
+{"id": "cc_challenge_0208", "text": "no issues to flag, all clear", "true_label": "STATUS_UPDATE", "raw_reply": "STATUS_UPDATE", "parsed_prediction": "STATUS_UPDATE"}
+{"id": "cc_challenge_0209", "text": "riding comfortably, no concerns", "true_label": "STATUS_UPDATE", "raw_reply": "STATUS_UPDATE", "parsed_prediction": "STATUS_UPDATE"}
+{"id": "cc_challenge_0210", "text": "just a quick update, im fine", "true_label": "STATUS_UPDATE", "raw_reply": "STATUS_UPDATE", "parsed_prediction": "STATUS_UPDATE"}
+{"id": "cc_challenge_0211", "text": "everything's status quo over here", "true_label": "STATUS_UPDATE", "raw_reply": "STATUS_UPDATE", "parsed_prediction": "STATUS_UPDATE"}
+{"id": "cc_challenge_0212", "text": "nothing eventful, just riding along", "true_label": "STATUS_UPDATE", "raw_reply": "GENERAL", "parsed_prediction": "GENERAL"}
+{"id": "cc_challenge_0213", "text": "feeling solid, no problems", "true_label": "STATUS_UPDATE", "raw_reply": "STATUS_UPDATE", "parsed_prediction": "STATUS_UPDATE"}
+{"id": "cc_challenge_0214", "text": "all systems normal on my side", "true_label": "STATUS_UPDATE", "raw_reply": "STATUS_UPDATE", "parsed_prediction": "STATUS_UPDATE"}
+{"id": "cc_challenge_0215", "text": "riding steady, no news is good news", "true_label": "STATUS_UPDATE", "raw_reply": "STATUS_UPDATE", "parsed_prediction": "STATUS_UPDATE"}
+{"id": "cc_challenge_0216", "text": "just letting yall know im good", "true_label": "STATUS_UPDATE", "raw_reply": "STATUS_UPDATE", "parsed_prediction": "STATUS_UPDATE"}
+{"id": "cc_challenge_0217", "text": "no drama here, cruising along", "true_label": "STATUS_UPDATE", "raw_reply": "GENERAL", "parsed_prediction": "GENERAL"}
+{"id": "cc_challenge_0218", "text": "all fine, just checking in", "true_label": "STATUS_UPDATE", "raw_reply": "STATUS_UPDATE", "parsed_prediction": "STATUS_UPDATE"}
+{"id": "cc_challenge_0219", "text": "steady as she goes, all good", "true_label": "STATUS_UPDATE", "raw_reply": "STATUS_UPDATE", "parsed_prediction": "STATUS_UPDATE"}
+{"id": "cc_challenge_0220", "text": "nothing to report, just vibing", "true_label": "STATUS_UPDATE", "raw_reply": "STATUS_UPDATE", "parsed_prediction": "STATUS_UPDATE"}
+{"id": "cc_challenge_0221", "text": "this scenery is unreal right now", "true_label": "GENERAL", "raw_reply": "GENERAL", "parsed_prediction": "GENERAL"}
+{"id": "cc_challenge_0222", "text": "having a blast today honestly", "true_label": "GENERAL", "raw_reply": "GENERAL", "parsed_prediction": "GENERAL"}
+{"id": "cc_challenge_0223", "text": "yall seeing this sunset", "true_label": "GENERAL", "raw_reply": "GENERAL", "parsed_prediction": "GENERAL"}
+{"id": "cc_challenge_0224", "text": "this playlist slaps ngl", "true_label": "GENERAL", "raw_reply": "GENERAL", "parsed_prediction": "GENERAL"}
+{"id": "cc_challenge_0225", "text": "todays turning into a great ride", "true_label": "GENERAL", "raw_reply": "GENERAL", "parsed_prediction": "GENERAL"}
+{"id": "cc_challenge_0226", "text": "loving this route choice", "true_label": "GENERAL", "raw_reply": "GENERAL", "parsed_prediction": "GENERAL"}
+{"id": "cc_challenge_0227", "text": "this air smells amazing out here", "true_label": "GENERAL", "raw_reply": "GENERAL", "parsed_prediction": "GENERAL"}
+{"id": "cc_challenge_0228", "text": "what a perfect day for this", "true_label": "GENERAL", "raw_reply": "GENERAL", "parsed_prediction": "GENERAL"}
+{"id": "cc_challenge_0229", "text": "this curve was so much fun", "true_label": "GENERAL", "raw_reply": "GENERAL", "parsed_prediction": "GENERAL"}
+{"id": "cc_challenge_0230", "text": "cant believe how nice it is out", "true_label": "GENERAL", "raw_reply": "GENERAL", "parsed_prediction": "GENERAL"}
+{"id": "cc_challenge_0231", "text": "this is exactly what i needed today", "true_label": "GENERAL", "raw_reply": "GENERAL", "parsed_prediction": "GENERAL"}
+{"id": "cc_challenge_0232", "text": "vibes are immaculate right now", "true_label": "GENERAL", "raw_reply": "GENERAL", "parsed_prediction": "GENERAL"}
+{"id": "cc_challenge_0233", "text": "this group ride never disappoints", "true_label": "GENERAL", "raw_reply": "GENERAL", "parsed_prediction": "GENERAL"}
+{"id": "cc_challenge_0234", "text": "feeling great about today's ride", "true_label": "GENERAL", "raw_reply": "GENERAL", "parsed_prediction": "GENERAL"}
+{"id": "cc_challenge_0235", "text": "this road trip was such a good call", "true_label": "GENERAL", "raw_reply": "GENERAL", "parsed_prediction": "GENERAL"}
+{"id": "cc_challenge_0236", "text": "loving every second of this", "true_label": "GENERAL", "raw_reply": "GENERAL", "parsed_prediction": "GENERAL"}
+{"id": "cc_challenge_0237", "text": "this view keeps getting better", "true_label": "GENERAL", "raw_reply": "GENERAL", "parsed_prediction": "GENERAL"}
+{"id": "cc_challenge_0238", "text": "today's been a good one so far", "true_label": "GENERAL", "raw_reply": "GENERAL", "parsed_prediction": "GENERAL"}
+{"id": "cc_challenge_0239", "text": "this is the kind of day you remember", "true_label": "GENERAL", "raw_reply": "GENERAL", "parsed_prediction": "GENERAL"}
+{"id": "cc_challenge_0240", "text": "honestly perfect conditions today", "true_label": "GENERAL", "raw_reply": "GENERAL", "parsed_prediction": "GENERAL"}

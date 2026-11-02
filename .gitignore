@@ -1,0 +1,52 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+
+# Node / frontend
+node_modules/
+dist/
+.vite/
+
+# Env files
+.env
+.env.local
+
+# OS
+.DS_Store
+Thumbs.db
+
+# ConvoyConnect deployment exclusions
+backend/.env*
+backend/*.env
+backend/*.pem
+backend/data/
+backend/backup-before-km-migration/
+backend.zip
+*.db
+*.db-shm
+*.db-wal
+*.pt
+
+# NLP training checkpoints (keep active LoRA adapter)
+research/nlp/advanced_llm/models/checkpoints/
+research/nlp/advanced_llm/models/_debug_checkpoints/
+
+# Python cache
+__pycache__/
+
+# Temporary and backup source files
+*.backup
+*.before-*
+*.encoding-backup
+*.pre-final-repair
+
+# Temporary frontend dependencies
+frontend/leaflet-temp/
+frontend/*.tgz
+
+# Debug NLP results
+research/nlp/advanced_llm/results/*debug*

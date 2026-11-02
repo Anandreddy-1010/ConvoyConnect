@@ -1,0 +1,55 @@
+{
+  "experiment_name": "convoyconnect_phase3_7_advanced_llm",
+  "model_checkpoint": "Qwen/Qwen2.5-0.5B-Instruct",
+  "random_state": 42,
+  "dataset": {
+    "train_path": "../../dataset/train/train.jsonl",
+    "validation_path": "../../dataset/validation/validation.jsonl",
+    "test_path": "../../dataset/test/test.jsonl",
+    "challenge_path": "../../comparison/challenging_set/challenge_eval.jsonl",
+    "text_field": "text",
+    "label_field": "intent"
+  },
+  "intent_labels": [
+    "REFUELING",
+    "REST_BREAK",
+    "FOOD_BREAK",
+    "VEHICLE_PROBLEM",
+    "TRAFFIC_DELAY",
+    "FALLING_BEHIND",
+    "LOST",
+    "REGROUP_REQUEST",
+    "DESTINATION_CHANGE",
+    "EMERGENCY",
+    "STATUS_UPDATE",
+    "GENERAL"
+  ],
+  "zero_shot": {
+    "max_new_tokens": 12,
+    "batch_size": 8,
+    "do_sample": false
+  },
+  "lora": {
+    "r": 8,
+    "lora_alpha": 16,
+    "lora_dropout": 0.05,
+    "target_modules": [
+      "q_proj",
+      "k_proj",
+      "v_proj",
+      "o_proj"
+    ],
+    "num_train_epochs": 2,
+    "per_device_train_batch_size": 4,
+    "learning_rate": 0.0002,
+    "max_seq_length": 256
+  },
+  "feasibility": {
+    "sample_batch_size": 4,
+    "decision_threshold_minutes": 90,
+    "note": "Threshold is a documented planning guide, not an automatic hard stop -- train_lora.py always prints the measured numbers and requires the feasibility report to exist before proceeding.",
+    "timed_steps": 5,
+    "report_format_version": 2
+  },
+  "epochs_rationale": "LoRA is trained for exactly 2 epochs because of CPU compute limits: the measured feasibility run (v2, real training format) gave ~9.6 s/step, i.e. ~100.8 min for 3 epochs (range 83.5-118.6) versus ~67 min for 2 epochs. The epoch count was fixed BEFORE any LoRA result existed and was not chosen using test-set or challenge-set performance. It is a compute-driven limitation, not a tuned value."
+}

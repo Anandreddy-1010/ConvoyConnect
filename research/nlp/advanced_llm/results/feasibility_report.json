@@ -1,0 +1,39 @@
+{
+  "executed": true,
+  "report_format_version": 2,
+  "model_checkpoint": "Qwen/Qwen2.5-0.5B-Instruct",
+  "model_load_time_seconds": 5.8,
+  "trainable_params": 1081344,
+  "total_params": 495114112,
+  "token_length_audit": {
+    "n": 840,
+    "min_tokens": 121,
+    "mean_tokens": 130.2,
+    "max_tokens": 141,
+    "min_answer_tokens": 3,
+    "max_answer_tokens": 8,
+    "n_exceeding_max_seq_length": 0
+  },
+  "measured_batch_size": 4,
+  "measured_step_times_seconds": [
+    7.956,
+    11.294,
+    9.675,
+    9.759,
+    9.3
+  ],
+  "mean_step_time_seconds": 9.597,
+  "train_set_size": 840,
+  "steps_per_epoch": 210,
+  "configured_epochs": 3,
+  "total_training_steps": 630,
+  "estimated_total_training_time_minutes": 100.8,
+  "estimated_range_minutes": {
+    "low_fastest_step": 83.5,
+    "high_slowest_step": 118.6
+  },
+  "step_times_rising_warning": false,
+  "decision_threshold_minutes": 90,
+  "recommendation": "BORDERLINE -- mean estimate is within the threshold but the slowest-step estimate is not",
+  "extrapolation_caveat": "Linear extrapolation from a few measured steps; real time can differ (thermal throttling, memory pressure, background load such as OneDrive sync)."
+}

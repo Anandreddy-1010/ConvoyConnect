@@ -1,0 +1,180 @@
+{"id": "cc_nlp_000782", "text": "theres a diner at the rest stop off I-80, wanna stop!", "true_label": "FOOD_BREAK", "raw_reply": "FOOD_BREAK", "parsed_prediction": "FOOD_BREAK"}
+{"id": "cc_nlp_000026", "text": "ok lets grab lunch right now. lol", "true_label": "FOOD_BREAK", "raw_reply": "FOOD_BREAK", "parsed_prediction": "FOOD_BREAK"}
+{"id": "cc_nlp_000911", "text": "need snacks, can we stop in a few miles?", "true_label": "FOOD_BREAK", "raw_reply": "FOOD_BREAK", "parsed_prediction": "FOOD_BREAK"}
+{"id": "cc_nlp_000772", "text": "im starving, can we eat soon", "true_label": "FOOD_BREAK", "raw_reply": "FOOD_BREAK", "parsed_prediction": "FOOD_BREAK"}
+{"id": "cc_nlp_000898", "text": "hangry, need food asap. lol", "true_label": "FOOD_BREAK", "raw_reply": "FOOD_BREAK", "parsed_prediction": "FOOD_BREAK"}
+{"id": "cc_nlp_000698", "text": "im starving, can we eat soon. lol", "true_label": "FOOD_BREAK", "raw_reply": "FOOD_BREAK", "parsed_prediction": "FOOD_BREAK"}
+{"id": "cc_nlp_000128", "text": "hey hangry, need food asap?", "true_label": "FOOD_BREAK", "raw_reply": "FOOD_BREAK", "parsed_prediction": "FOOD_BREAK"}
+{"id": "cc_nlp_001176", "text": "im starving lol can we pull over to eat! tbh", "true_label": "FOOD_BREAK", "raw_reply": "FOOD_BREAK", "parsed_prediction": "FOOD_BREAK"}
+{"id": "cc_nlp_001020", "text": "lunch stop needed, by 5 works for me! pls", "true_label": "FOOD_BREAK", "raw_reply": "FOOD_BREAK", "parsed_prediction": "FOOD_BREAK"}
+{"id": "cc_nlp_000573", "text": "food break at the gas station up ahead sound good to everyone?", "true_label": "FOOD_BREAK", "raw_reply": "FOOD_BREAK", "parsed_prediction": "FOOD_BREAK"}
+{"id": "cc_nlp_000712", "text": "uh food stop at the underpass? im hungry", "true_label": "FOOD_BREAK", "raw_reply": "FOOD_BREAK", "parsed_prediction": "FOOD_BREAK"}
+{"id": "cc_nlp_000188", "text": "ok lets grab lunch around 3pm. ngl", "true_label": "FOOD_BREAK", "raw_reply": "FOOD_BREAK", "parsed_prediction": "FOOD_BREAK"}
+{"id": "cc_nlp_001046", "text": "Let's stop to eat before the coast.", "true_label": "FOOD_BREAK", "raw_reply": "FOOD_BREAK", "parsed_prediction": "FOOD_BREAK"}
+{"id": "cc_nlp_000405", "text": "hey grabbing food at the toll booth, come if u want! tbh", "true_label": "FOOD_BREAK", "raw_reply": "FOOD_BREAK", "parsed_prediction": "FOOD_BREAK"}
+{"id": "cc_nlp_000038", "text": "so need to eat something, running on empty myself not just the bike. ngl", "true_label": "FOOD_BREAK", "raw_reply": "FOOD_BREAK", "parsed_prediction": "FOOD_BREAK"}
+{"id": "cc_nlp_000652", "text": "I believe I'm off route, where's everyone at? if that works.", "true_label": "LOST", "raw_reply": "LOST", "parsed_prediction": "LOST"}
+{"id": "cc_nlp_001116", "text": "so where is everyone, i dont see anyone on the road? ngl", "true_label": "LOST", "raw_reply": "LOST", "parsed_prediction": "LOST"}
+{"id": "cc_nlp_000746", "text": "think i went the wrong way near the highway shoulder!", "true_label": "LOST", "raw_reply": "LOST", "parsed_prediction": "LOST"}
+{"id": "cc_nlp_000397", "text": "im turned around near the state line, need directions tbh", "true_label": "LOST", "raw_reply": "LOST", "parsed_prediction": "LOST"}
+{"id": "cc_nlp_000807", "text": "lost, no idea which road to take now. tbh", "true_label": "LOST", "raw_reply": "LOST", "parsed_prediction": "LOST"}
+{"id": "cc_nlp_000855", "text": "where is everyone, i dont see anyone on the road pls", "true_label": "LOST", "raw_reply": "LOST", "parsed_prediction": "LOST"}
+{"id": "cc_nlp_001158", "text": "cant find the route anymore, help", "true_label": "LOST", "raw_reply": "LOST", "parsed_prediction": "LOST"}
+{"id": "cc_nlp_000588", "text": "Not sure which way to go, can someone guide me?", "true_label": "LOST", "raw_reply": "LOST", "parsed_prediction": "LOST"}
+{"id": "cc_nlp_000019", "text": "Can't find the route, anyone know where we are?, please.", "true_label": "LOST", "raw_reply": "LOST", "parsed_prediction": "LOST"}
+{"id": "cc_nlp_001141", "text": "missed the exit, where'd everyone head ngl", "true_label": "LOST", "raw_reply": "LOST", "parsed_prediction": "LOST"}
+{"id": "cc_nlp_000182", "text": "ok cant find the route anymore, help? tbh", "true_label": "LOST", "raw_reply": "LOST", "parsed_prediction": "LOST"}
+{"id": "cc_nlp_000153", "text": "I don't see anyone, did I go the wrong way?", "true_label": "LOST", "raw_reply": "LOST", "parsed_prediction": "LOST"}
+{"id": "cc_nlp_000143", "text": "yo cant tell if im still on the right road. lol", "true_label": "LOST", "raw_reply": "LOST", "parsed_prediction": "LOST"}
+{"id": "cc_nlp_000002", "text": "lost, no idea which road to take now pls", "true_label": "LOST", "raw_reply": "LOST", "parsed_prediction": "LOST"}
+{"id": "cc_nlp_000207", "text": "where is everyone, i dont see anyone on the road. haha", "true_label": "LOST", "raw_reply": "LOST", "parsed_prediction": "LOST"}
+{"id": "cc_nlp_000250", "text": "Pretty sure I have the chain slipping, need to stop and check.", "true_label": "VEHICLE_PROBLEM", "raw_reply": "VEHICLE_PROBLEM", "parsed_prediction": "VEHICLE_PROBLEM"}
+{"id": "cc_nlp_000947", "text": "ok pulling over, a weird grinding noise on my end haha", "true_label": "VEHICLE_PROBLEM", "raw_reply": "VEHICLE_PROBLEM", "parsed_prediction": "VEHICLE_PROBLEM"}
+{"id": "cc_nlp_000670", "text": "ok oh no, a flat tire, need to stop!", "true_label": "VEHICLE_PROBLEM", "raw_reply": "VEHICLE_PROBLEM", "parsed_prediction": "VEHICLE_PROBLEM"}
+{"id": "cc_nlp_000400", "text": "hey the yamaha making a weird noise, stopping to check. haha", "true_label": "VEHICLE_PROBLEM", "raw_reply": "VEHICLE_PROBLEM", "parsed_prediction": "VEHICLE_PROBLEM"}
+{"id": "cc_nlp_000020", "text": "hey gonna turn around, a warning light isnt getting better.", "true_label": "VEHICLE_PROBLEM", "raw_reply": "TRAFFIC_DELAY", "parsed_prediction": "TRAFFIC_DELAY"}
+{"id": "cc_nlp_000422", "text": "ok gonna pull over, a dead battery isnt getting better.", "true_label": "VEHICLE_PROBLEM", "raw_reply": "VEHICLE_PROBLEM", "parsed_prediction": "VEHICLE_PROBLEM"}
+{"id": "cc_nlp_000519", "text": "Not sure what's going on but the clutch isn't right, please.", "true_label": "VEHICLE_PROBLEM", "raw_reply": "VEHICLE_PROBLEM", "parsed_prediction": "VEHICLE_PROBLEM"}
+{"id": "cc_nlp_000249", "text": "so mechanical issue, a cracked windshield, stopping at the toll booth!", "true_label": "VEHICLE_PROBLEM", "raw_reply": "VEHICLE_PROBLEM", "parsed_prediction": "VEHICLE_PROBLEM"}
+{"id": "cc_nlp_000535", "text": "pulling over, a cracked windshield on my end pls", "true_label": "VEHICLE_PROBLEM", "raw_reply": "VEHICLE_PROBLEM", "parsed_prediction": "VEHICLE_PROBLEM"}
+{"id": "cc_nlp_001029", "text": "uh think a weird grinding noise is happening, pulling to the shoulder. pls", "true_label": "VEHICLE_PROBLEM", "raw_reply": "VEHICLE_PROBLEM", "parsed_prediction": "VEHICLE_PROBLEM"}
+{"id": "cc_nlp_000684", "text": "so not sure if i can keep going, brake trouble is bad! pls", "true_label": "VEHICLE_PROBLEM", "raw_reply": "VEHICLE_PROBLEM", "parsed_prediction": "VEHICLE_PROBLEM"}
+{"id": "cc_nlp_000165", "text": "hey pulling over, the engine stalling on my end!", "true_label": "VEHICLE_PROBLEM", "raw_reply": "VEHICLE_PROBLEM", "parsed_prediction": "VEHICLE_PROBLEM"}
+{"id": "cc_nlp_000958", "text": "so my headlight making a weird noise, stopping to check ngl", "true_label": "VEHICLE_PROBLEM", "raw_reply": "VEHICLE_PROBLEM", "parsed_prediction": "VEHICLE_PROBLEM"}
+{"id": "cc_nlp_000462", "text": "hey my headlight just started doing something weird", "true_label": "VEHICLE_PROBLEM", "raw_reply": "VEHICLE_PROBLEM", "parsed_prediction": "VEHICLE_PROBLEM"}
+{"id": "cc_nlp_001006", "text": "my mirror is acting up, might be a fuel leak? pls", "true_label": "VEHICLE_PROBLEM", "raw_reply": "VEHICLE_PROBLEM", "parsed_prediction": "VEHICLE_PROBLEM"}
+{"id": "cc_nlp_000084", "text": "someone call for help, sofia went down at the state line? haha", "true_label": "EMERGENCY", "raw_reply": "EMERGENCY", "parsed_prediction": "EMERGENCY"}
+{"id": "cc_nlp_000543", "text": "emergency, hurt bad near the rest area near Route 9!", "true_label": "EMERGENCY", "raw_reply": "EMERGENCY", "parsed_prediction": "EMERGENCY"}
+{"id": "cc_nlp_000794", "text": "ok riley is down and not responding, near the truck stop?", "true_label": "EMERGENCY", "raw_reply": "EMERGENCY", "parsed_prediction": "EMERGENCY"}
+{"id": "cc_nlp_000955", "text": "Emergency, Sofia is hurt near the old bridge if that works.", "true_label": "EMERGENCY", "raw_reply": "EMERGENCY", "parsed_prediction": "EMERGENCY"}
+{"id": "cc_nlp_000246", "text": "There's been an accident near the highway shoulder, send help — let me know.", "true_label": "EMERGENCY", "raw_reply": "EMERGENCY", "parsed_prediction": "EMERGENCY"}
+{"id": "cc_nlp_000119", "text": "Emergency, Sofia is hurt near the old bridge, please.", "true_label": "EMERGENCY", "raw_reply": "EMERGENCY", "parsed_prediction": "EMERGENCY"}
+{"id": "cc_nlp_000339", "text": "I crashed near the gas station on Main St, need help now if that works.", "true_label": "EMERGENCY", "raw_reply": "EMERGENCY", "parsed_prediction": "EMERGENCY"}
+{"id": "cc_nlp_000764", "text": "I crashed near the gas station on Main St, need help now — let me know.", "true_label": "EMERGENCY", "raw_reply": "EMERGENCY", "parsed_prediction": "EMERGENCY"}
+{"id": "cc_nlp_000414", "text": "hey sam is down and not responding, near the diner parking lot!", "true_label": "EMERGENCY", "raw_reply": "VEHICLE_PROBLEM", "parsed_prediction": "VEHICLE_PROBLEM"}
+{"id": "cc_nlp_000625", "text": "I can't move, badly hurt near mile marker 15 if that works.", "true_label": "EMERGENCY", "raw_reply": "EMERGENCY", "parsed_prediction": "EMERGENCY"}
+{"id": "cc_nlp_000123", "text": "ok this is serious, hurt badly near exit 42, help!", "true_label": "EMERGENCY", "raw_reply": "EMERGENCY", "parsed_prediction": "EMERGENCY"}
+{"id": "cc_nlp_000244", "text": "I went down, need help immediately at the rest area near Route 9.", "true_label": "EMERGENCY", "raw_reply": "EMERGENCY", "parsed_prediction": "EMERGENCY"}
+{"id": "cc_nlp_000527", "text": "There's been an accident near the highway shoulder, send help.", "true_label": "EMERGENCY", "raw_reply": "EMERGENCY", "parsed_prediction": "EMERGENCY"}
+{"id": "cc_nlp_000771", "text": "urgent, accident happened near the last intersection, help needed now. lol", "true_label": "EMERGENCY", "raw_reply": "EMERGENCY", "parsed_prediction": "EMERGENCY"}
+{"id": "cc_nlp_001156", "text": "I crashed near the gas station on Main St, need help now.", "true_label": "EMERGENCY", "raw_reply": "EMERGENCY", "parsed_prediction": "EMERGENCY"}
+{"id": "cc_nlp_001195", "text": "ok lets not split up more, meet at the scenic overlook lol", "true_label": "REGROUP_REQUEST", "raw_reply": "REGROUP_REQUEST", "parsed_prediction": "REGROUP_REQUEST"}
+{"id": "cc_nlp_000158", "text": "lets wait for alex at the curve past the farm?", "true_label": "REGROUP_REQUEST", "raw_reply": "REGROUP_REQUEST", "parsed_prediction": "REGROUP_REQUEST"}
+{"id": "cc_nlp_000151", "text": "Can we all pull over at Miller's Mill Road?", "true_label": "REGROUP_REQUEST", "raw_reply": "REGROUP_REQUEST", "parsed_prediction": "REGROUP_REQUEST"}
+{"id": "cc_nlp_000584", "text": "yo can we all stop at the rest area near Route 9 and wait up! tbh", "true_label": "REGROUP_REQUEST", "raw_reply": "REGROUP_REQUEST", "parsed_prediction": "REGROUP_REQUEST"}
+{"id": "cc_nlp_001130", "text": "hey waiting at the highway shoulder for everyone to catch up. pls", "true_label": "REGROUP_REQUEST", "raw_reply": "REGROUP_REQUEST", "parsed_prediction": "REGROUP_REQUEST"}
+{"id": "cc_nlp_001166", "text": "Let's wait for Jamie at the highway shoulder.", "true_label": "REGROUP_REQUEST", "raw_reply": "REGROUP_REQUEST", "parsed_prediction": "REGROUP_REQUEST"}
+{"id": "cc_nlp_000114", "text": "ok everyone stop at the overpass, we're too spread out. haha", "true_label": "REGROUP_REQUEST", "raw_reply": "REGROUP_REQUEST", "parsed_prediction": "REGROUP_REQUEST"}
+{"id": "cc_nlp_000157", "text": "ok everyone meet at mile marker 15 in about an hour?", "true_label": "REGROUP_REQUEST", "raw_reply": "REGROUP_REQUEST", "parsed_prediction": "REGROUP_REQUEST"}
+{"id": "cc_nlp_000214", "text": "lets regroup at the gas station on main st! tbh", "true_label": "REGROUP_REQUEST", "raw_reply": "REGROUP_REQUEST", "parsed_prediction": "REGROUP_REQUEST"}
+{"id": "cc_nlp_000805", "text": "Can everyone meet at Exit 42 in half an hour? — let me know.", "true_label": "REGROUP_REQUEST", "raw_reply": "REGROUP_REQUEST", "parsed_prediction": "REGROUP_REQUEST"}
+{"id": "cc_nlp_000049", "text": "Meet at the old bridge so we can regroup, please.", "true_label": "REGROUP_REQUEST", "raw_reply": "REGROUP_REQUEST", "parsed_prediction": "REGROUP_REQUEST"}
+{"id": "cc_nlp_000570", "text": "Everyone stop at mile marker 15 until we're all together — let me know.", "true_label": "REGROUP_REQUEST", "raw_reply": "REGROUP_REQUEST", "parsed_prediction": "REGROUP_REQUEST"}
+{"id": "cc_nlp_000198", "text": "I'm fairly sure we should check the map at the diner parking lot.", "true_label": "REGROUP_REQUEST", "raw_reply": "REGROUP_REQUEST", "parsed_prediction": "REGROUP_REQUEST"}
+{"id": "cc_nlp_000694", "text": "yo lets not split up more, meet at the underpass! ngl", "true_label": "REGROUP_REQUEST", "raw_reply": "REGROUP_REQUEST", "parsed_prediction": "REGROUP_REQUEST"}
+{"id": "cc_nlp_000034", "text": "pull over at the diner parking lot, lets get everyone together. haha", "true_label": "REGROUP_REQUEST", "raw_reply": "REGROUP_REQUEST", "parsed_prediction": "REGROUP_REQUEST"}
+{"id": "cc_nlp_000371", "text": "ugh traffic, a few minutes behind schedule now", "true_label": "TRAFFIC_DELAY", "raw_reply": "TRAFFIC_DELAY", "parsed_prediction": "TRAFFIC_DELAY"}
+{"id": "cc_nlp_000471", "text": "Stuck in traffic near the gas station on Main St, running late — let me know.", "true_label": "TRAFFIC_DELAY", "raw_reply": "TRAFFIC_DELAY", "parsed_prediction": "TRAFFIC_DELAY"}
+{"id": "cc_nlp_000458", "text": "traffic is bad near mile marker 15, gonna be late", "true_label": "TRAFFIC_DELAY", "raw_reply": "TRAFFIC_DELAY", "parsed_prediction": "TRAFFIC_DELAY"}
+{"id": "cc_nlp_000133", "text": "Traffic light is out at mile marker 15, causing delays, please.", "true_label": "TRAFFIC_DELAY", "raw_reply": "TRAFFIC_DELAY", "parsed_prediction": "TRAFFIC_DELAY"}
+{"id": "cc_nlp_000657", "text": "There's construction near the rest area near Route 9, slowing us down.", "true_label": "TRAFFIC_DELAY", "raw_reply": "TRAFFIC_DELAY", "parsed_prediction": "TRAFFIC_DELAY"}
+{"id": "cc_nlp_000985", "text": "so bumper to bumper near Exit 42 rn? ngl", "true_label": "TRAFFIC_DELAY", "raw_reply": "TRAFFIC_DELAY", "parsed_prediction": "TRAFFIC_DELAY"}
+{"id": "cc_nlp_000761", "text": "hey ugh traffic, a short while behind schedule now. ngl", "true_label": "TRAFFIC_DELAY", "raw_reply": "TRAFFIC_DELAY", "parsed_prediction": "TRAFFIC_DELAY"}
+{"id": "cc_nlp_000349", "text": "road work slowing everyone down near the gravel patch? ngl", "true_label": "TRAFFIC_DELAY", "raw_reply": "TRAFFIC_DELAY", "parsed_prediction": "TRAFFIC_DELAY"}
+{"id": "cc_nlp_000359", "text": "yo construction near mile marker 15, slow going! pls", "true_label": "TRAFFIC_DELAY", "raw_reply": "TRAFFIC_DELAY", "parsed_prediction": "TRAFFIC_DELAY"}
+{"id": "cc_nlp_001077", "text": "detour near the toll booth, gonna add 20 mins! tbh", "true_label": "TRAFFIC_DELAY", "raw_reply": "TRAFFIC_DELAY", "parsed_prediction": "TRAFFIC_DELAY"}
+{"id": "cc_nlp_000952", "text": "ok gonna be delayed 10-15 min, traffic's rough. tbh", "true_label": "TRAFFIC_DELAY", "raw_reply": "TRAFFIC_DELAY", "parsed_prediction": "TRAFFIC_DELAY"}
+{"id": "cc_nlp_001019", "text": "Traffic is backed up for about 5 miles back, might take half an hour.", "true_label": "TRAFFIC_DELAY", "raw_reply": "TRAFFIC_DELAY", "parsed_prediction": "TRAFFIC_DELAY"}
+{"id": "cc_nlp_000316", "text": "bumper to bumper near mile marker 15 rn.", "true_label": "TRAFFIC_DELAY", "raw_reply": "TRAFFIC_DELAY", "parsed_prediction": "TRAFFIC_DELAY"}
+{"id": "cc_nlp_000280", "text": "ok construction near the gas station on Main St, slow going! tbh", "true_label": "TRAFFIC_DELAY", "raw_reply": "TRAFFIC_DELAY", "parsed_prediction": "TRAFFIC_DELAY"}
+{"id": "cc_nlp_000759", "text": "Road's jammed up, gonna be a few minutes behind, please.", "true_label": "TRAFFIC_DELAY", "raw_reply": "TRAFFIC_DELAY", "parsed_prediction": "TRAFFIC_DELAY"}
+{"id": "cc_nlp_001154", "text": "uh im stiff, need to get off the bike for a short while pls", "true_label": "REST_BREAK", "raw_reply": "REST_BREAK", "parsed_prediction": "REST_BREAK"}
+{"id": "cc_nlp_000024", "text": "yo lets rest for a bit at the state line. pls", "true_label": "REST_BREAK", "raw_reply": "REST_BREAK", "parsed_prediction": "REST_BREAK"}
+{"id": "cc_nlp_000864", "text": "uh need a leg stretch break, 3 miles was a lot haha", "true_label": "REST_BREAK", "raw_reply": "REST_BREAK", "parsed_prediction": "REST_BREAK"}
+{"id": "cc_nlp_000494", "text": "need to rest my hands, been gripping too long. haha", "true_label": "REST_BREAK", "raw_reply": "REST_BREAK", "parsed_prediction": "REST_BREAK"}
+{"id": "cc_nlp_000550", "text": "ok can we stop for about an hour, need to stretch", "true_label": "REST_BREAK", "raw_reply": "REST_BREAK", "parsed_prediction": "REST_BREAK"}
+{"id": "cc_nlp_000843", "text": "How about we take a few minutes to rest before continuing", "true_label": "REST_BREAK", "raw_reply": "REST_BREAK", "parsed_prediction": "REST_BREAK"}
+{"id": "cc_nlp_000873", "text": "ok need a break, legs are killing me haha", "true_label": "REST_BREAK", "raw_reply": "REST_BREAK", "parsed_prediction": "REST_BREAK"}
+{"id": "cc_nlp_001053", "text": "so lets rest for a bit at the gravel patch. lol", "true_label": "REST_BREAK", "raw_reply": "REST_BREAK", "parsed_prediction": "REST_BREAK"}
+{"id": "cc_nlp_001054", "text": "ok im stiff, need to get off the bike for 45 minutes!", "true_label": "REST_BREAK", "raw_reply": "REST_BREAK", "parsed_prediction": "REST_BREAK"}
+{"id": "cc_nlp_000897", "text": "yo resting for 10 minutes at mile marker 15, catch up after? pls", "true_label": "REST_BREAK", "raw_reply": "REST_BREAK", "parsed_prediction": "REST_BREAK"}
+{"id": "cc_nlp_000705", "text": "uh im stiff, need to get off the bike for 20 mins. pls", "true_label": "REST_BREAK", "raw_reply": "REST_BREAK", "parsed_prediction": "REST_BREAK"}
+{"id": "cc_nlp_000965", "text": "Quick break needed, meet at the truck stop?", "true_label": "REST_BREAK", "raw_reply": "REST_BREAK", "parsed_prediction": "REST_BREAK"}
+{"id": "cc_nlp_000174", "text": "ok quick stretch break at the next stop?? lol", "true_label": "REST_BREAK", "raw_reply": "REST_BREAK", "parsed_prediction": "REST_BREAK"}
+{"id": "cc_nlp_000623", "text": "uh stopping to rest at the state line, join if you need it too? pls", "true_label": "REST_BREAK", "raw_reply": "REST_BREAK", "parsed_prediction": "REST_BREAK"}
+{"id": "cc_nlp_000073", "text": "so resting for 5 minutes at the truck stop, catch up after!", "true_label": "REST_BREAK", "raw_reply": "REST_BREAK", "parsed_prediction": "REST_BREAK"}
+{"id": "cc_nlp_000713", "text": "ok no complaints, riding's smooth so far. tbh", "true_label": "STATUS_UPDATE", "raw_reply": "STATUS_UPDATE", "parsed_prediction": "STATUS_UPDATE"}
+{"id": "cc_nlp_000334", "text": "everything's fine on my end! ngl", "true_label": "STATUS_UPDATE", "raw_reply": "STATUS_UPDATE", "parsed_prediction": "STATUS_UPDATE"}
+{"id": "cc_nlp_000457", "text": "so cruising at a nice pace, all good?", "true_label": "STATUS_UPDATE", "raw_reply": "STATUS_UPDATE", "parsed_prediction": "STATUS_UPDATE"}
+{"id": "cc_nlp_000661", "text": "good to go, 10 miles left.", "true_label": "STATUS_UPDATE", "raw_reply": "STATUS_UPDATE", "parsed_prediction": "STATUS_UPDATE"}
+{"id": "cc_nlp_000170", "text": "good to go, just around the bend left", "true_label": "STATUS_UPDATE", "raw_reply": "STATUS_UPDATE", "parsed_prediction": "STATUS_UPDATE"}
+{"id": "cc_nlp_000355", "text": "yo all clear, 5 minutes till the campsite.", "true_label": "STATUS_UPDATE", "raw_reply": "STATUS_UPDATE", "parsed_prediction": "STATUS_UPDATE"}
+{"id": "cc_nlp_000070", "text": "good to go, 2 miles ahead left tbh", "true_label": "STATUS_UPDATE", "raw_reply": "STATUS_UPDATE", "parsed_prediction": "STATUS_UPDATE"}
+{"id": "cc_nlp_001162", "text": "ok all good back here", "true_label": "STATUS_UPDATE", "raw_reply": "STATUS_UPDATE", "parsed_prediction": "STATUS_UPDATE"}
+{"id": "cc_nlp_000997", "text": "Riding smooth, 15 min until the Route 66 diner, please.", "true_label": "STATUS_UPDATE", "raw_reply": "STATUS_UPDATE", "parsed_prediction": "STATUS_UPDATE"}
+{"id": "cc_nlp_000163", "text": "All good back here, cruising at a steady pace.", "true_label": "STATUS_UPDATE", "raw_reply": "STATUS_UPDATE", "parsed_prediction": "STATUS_UPDATE"}
+{"id": "cc_nlp_000891", "text": "yo im good, keeping up fine? tbh", "true_label": "STATUS_UPDATE", "raw_reply": "STATUS_UPDATE", "parsed_prediction": "STATUS_UPDATE"}
+{"id": "cc_nlp_000762", "text": "uh status update, all good, half a mile to eagle pass! ngl", "true_label": "STATUS_UPDATE", "raw_reply": "STATUS_UPDATE", "parsed_prediction": "STATUS_UPDATE"}
+{"id": "cc_nlp_000700", "text": "all good back here! pls", "true_label": "STATUS_UPDATE", "raw_reply": "STATUS_UPDATE", "parsed_prediction": "STATUS_UPDATE"}
+{"id": "cc_nlp_000945", "text": "Cruising along, feeling good — let me know.", "true_label": "STATUS_UPDATE", "raw_reply": "STATUS_UPDATE", "parsed_prediction": "STATUS_UPDATE"}
+{"id": "cc_nlp_000559", "text": "All clear on my end, keeping pace fine.", "true_label": "STATUS_UPDATE", "raw_reply": "STATUS_UPDATE", "parsed_prediction": "STATUS_UPDATE"}
+{"id": "cc_nlp_001048", "text": "yo vibes are immaculate on this ride! tbh", "true_label": "GENERAL", "raw_reply": "GENERAL", "parsed_prediction": "GENERAL"}
+{"id": "cc_nlp_000703", "text": "Haha nice view up here, please.", "true_label": "GENERAL", "raw_reply": "GENERAL", "parsed_prediction": "GENERAL"}
+{"id": "cc_nlp_000974", "text": "loving this weather for riding haha", "true_label": "GENERAL", "raw_reply": "GENERAL", "parsed_prediction": "GENERAL"}
+{"id": "cc_nlp_001075", "text": "loving the group today, good vibes! ngl", "true_label": "GENERAL", "raw_reply": "GENERAL", "parsed_prediction": "GENERAL"}
+{"id": "cc_nlp_000454", "text": "this road trip is exactly what i needed. haha", "true_label": "GENERAL", "raw_reply": "GENERAL", "parsed_prediction": "GENERAL"}
+{"id": "cc_nlp_001138", "text": "uh haha nice view up here?", "true_label": "GENERAL", "raw_reply": "GENERAL", "parsed_prediction": "GENERAL"}
+{"id": "cc_nlp_001073", "text": "vibes are immaculate on this ride. tbh", "true_label": "GENERAL", "raw_reply": "GENERAL", "parsed_prediction": "GENERAL"}
+{"id": "cc_nlp_001146", "text": "cant complain, perfect riding weather!", "true_label": "GENERAL", "raw_reply": "GENERAL", "parsed_prediction": "GENERAL"}
+{"id": "cc_nlp_000375", "text": "this route is awesome! pls", "true_label": "GENERAL", "raw_reply": "GENERAL", "parsed_prediction": "GENERAL"}
+{"id": "cc_nlp_000830", "text": "ok this bike is running so smooth today? tbh", "true_label": "GENERAL", "raw_reply": "GENERAL", "parsed_prediction": "GENERAL"}
+{"id": "cc_nlp_000368", "text": "so this route is awesome. pls", "true_label": "GENERAL", "raw_reply": "GENERAL", "parsed_prediction": "GENERAL"}
+{"id": "cc_nlp_000292", "text": "great ride so far honestly! tbh", "true_label": "GENERAL", "raw_reply": "GENERAL", "parsed_prediction": "GENERAL"}
+{"id": "cc_nlp_000120", "text": "That was a fun stretch of road if that works.", "true_label": "GENERAL", "raw_reply": "GENERAL", "parsed_prediction": "GENERAL"}
+{"id": "cc_nlp_000304", "text": "uh what a great route choice ngl", "true_label": "GENERAL", "raw_reply": "GENERAL", "parsed_prediction": "GENERAL"}
+{"id": "cc_nlp_000785", "text": "ok nice curve back there lol pls", "true_label": "GENERAL", "raw_reply": "GENERAL", "parsed_prediction": "GENERAL"}
+{"id": "cc_nlp_000545", "text": "lets just go straight to the route 66 diner.", "true_label": "DESTINATION_CHANGE", "raw_reply": "DESTINATION_CHANGE", "parsed_prediction": "DESTINATION_CHANGE"}
+{"id": "cc_nlp_001119", "text": "Can we head to Pine Valley instead of the original plan, please.", "true_label": "DESTINATION_CHANGE", "raw_reply": "DESTINATION_CHANGE", "parsed_prediction": "DESTINATION_CHANGE"}
+{"id": "cc_nlp_000565", "text": "thinking Old Town might be better, thoughts. haha", "true_label": "DESTINATION_CHANGE", "raw_reply": "DESTINATION_CHANGE", "parsed_prediction": "DESTINATION_CHANGE"}
+{"id": "cc_nlp_000934", "text": "yo lets just go straight to the Route 66 diner. haha", "true_label": "DESTINATION_CHANGE", "raw_reply": "DESTINATION_CHANGE", "parsed_prediction": "DESTINATION_CHANGE"}
+{"id": "cc_nlp_000271", "text": "Let's change our stop to Ridgewood instead? — let me know.", "true_label": "DESTINATION_CHANGE", "raw_reply": "DESTINATION_CHANGE", "parsed_prediction": "DESTINATION_CHANGE"}
+{"id": "cc_nlp_001014", "text": "Could we skip this stop and go straight to the campsite?", "true_label": "DESTINATION_CHANGE", "raw_reply": "DESTINATION_CHANGE", "parsed_prediction": "DESTINATION_CHANGE"}
+{"id": "cc_nlp_000520", "text": "hey thinking the coast might be better, thoughts? ngl", "true_label": "DESTINATION_CHANGE", "raw_reply": "LOST", "parsed_prediction": "LOST"}
+{"id": "cc_nlp_000638", "text": "ok can we do blue mountain lodge instead of the planned spot tbh", "true_label": "DESTINATION_CHANGE", "raw_reply": "DESTINATION_CHANGE", "parsed_prediction": "DESTINATION_CHANGE"}
+{"id": "cc_nlp_001167", "text": "ok changing route, the state park is the new stop? pls", "true_label": "DESTINATION_CHANGE", "raw_reply": "DESTINATION_CHANGE", "parsed_prediction": "DESTINATION_CHANGE"}
+{"id": "cc_nlp_001192", "text": "hey can we go to crestline instead lol", "true_label": "DESTINATION_CHANGE", "raw_reply": "DESTINATION_CHANGE", "parsed_prediction": "DESTINATION_CHANGE"}
+{"id": "cc_nlp_000078", "text": "changing route, miller's point is the new stop! lol", "true_label": "DESTINATION_CHANGE", "raw_reply": "DESTINATION_CHANGE", "parsed_prediction": "DESTINATION_CHANGE"}
+{"id": "cc_nlp_000127", "text": "New plan, let's go to Miller's Point.", "true_label": "DESTINATION_CHANGE", "raw_reply": "DESTINATION_CHANGE", "parsed_prediction": "DESTINATION_CHANGE"}
+{"id": "cc_nlp_000660", "text": "Would it be OK to skip this stop and go straight to the campsite? — let me know.", "true_label": "DESTINATION_CHANGE", "raw_reply": "REGROUP_REQUEST", "parsed_prediction": "REGROUP_REQUEST"}
+{"id": "cc_nlp_000267", "text": "changing route, the state park is the new stop! ngl", "true_label": "DESTINATION_CHANGE", "raw_reply": "DESTINATION_CHANGE", "parsed_prediction": "DESTINATION_CHANGE"}
+{"id": "cc_nlp_000600", "text": "changing route, sunridge is the new stop", "true_label": "DESTINATION_CHANGE", "raw_reply": "DESTINATION_CHANGE", "parsed_prediction": "DESTINATION_CHANGE"}
+{"id": "cc_nlp_000216", "text": "so can we hit a gas station in 20 km! tbh", "true_label": "REFUELING", "raw_reply": "REFUELING", "parsed_prediction": "REFUELING"}
+{"id": "cc_nlp_000180", "text": "hey need juice for the bike, pulling in at the rest stop off I-80!", "true_label": "REFUELING", "raw_reply": "REFUELING", "parsed_prediction": "REFUELING"}
+{"id": "cc_nlp_000039", "text": "Running low on fuel, is there a station near Miller's Mill Road? — let me know.", "true_label": "REFUELING", "raw_reply": "REFUELING", "parsed_prediction": "REFUELING"}
+{"id": "cc_nlp_000100", "text": "uh topping off at the state line, anyone else need gas", "true_label": "REFUELING", "raw_reply": "REFUELING", "parsed_prediction": "REFUELING"}
+{"id": "cc_nlp_000054", "text": "Pretty sure everyone should top off tanks at the truck stop", "true_label": "REFUELING", "raw_reply": "REFUELING", "parsed_prediction": "REFUELING"}
+{"id": "cc_nlp_000450", "text": "uh gas station coming up in about 5 miles back, im stopping. lol", "true_label": "REFUELING", "raw_reply": "REFUELING", "parsed_prediction": "REFUELING"}
+{"id": "cc_nlp_001118", "text": "Can we pull over for fuel in about 5 miles back?", "true_label": "REFUELING", "raw_reply": "REFUELING", "parsed_prediction": "REFUELING"}
+{"id": "cc_nlp_000268", "text": "topping off at the church parking lot, anyone else need gas! tbh", "true_label": "REFUELING", "raw_reply": "REFUELING", "parsed_prediction": "REFUELING"}
+{"id": "cc_nlp_001059", "text": "gonna run out of gas in about 8 miles if we dont stop!", "true_label": "REFUELING", "raw_reply": "REFUELING", "parsed_prediction": "REFUELING"}
+{"id": "cc_nlp_000821", "text": "hey fuel light on, need a station soon haha", "true_label": "REFUELING", "raw_reply": "REFUELING", "parsed_prediction": "REFUELING"}
+{"id": "cc_nlp_001184", "text": "Fuel light just came on, need to stop — let me know.", "true_label": "REFUELING", "raw_reply": "REFUELING", "parsed_prediction": "REFUELING"}
+{"id": "cc_nlp_000571", "text": "so pulling over for gas at the gravel patch, back in just a sec? ngl", "true_label": "REFUELING", "raw_reply": "REFUELING", "parsed_prediction": "REFUELING"}
+{"id": "cc_nlp_000506", "text": "so pulling over for gas at the truck stop, back in 10-15 min! lol", "true_label": "REFUELING", "raw_reply": "REFUELING", "parsed_prediction": "REFUELING"}
+{"id": "cc_nlp_000757", "text": "My tank's almost empty, gotta stop somewhere — let me know.", "true_label": "REFUELING", "raw_reply": "REFUELING", "parsed_prediction": "REFUELING"}
+{"id": "cc_nlp_000255", "text": "fuel's getting low, about an hour left probably? lol", "true_label": "REFUELING", "raw_reply": "REFUELING", "parsed_prediction": "REFUELING"}
+{"id": "cc_nlp_001089", "text": "yo cant close the gap, 15 miles out behind. ngl", "true_label": "FALLING_BEHIND", "raw_reply": "FALLING_BEHIND", "parsed_prediction": "FALLING_BEHIND"}
+{"id": "cc_nlp_000603", "text": "im behind the group, 2 miles ahead maybe!", "true_label": "FALLING_BEHIND", "raw_reply": "FALLING_BEHIND", "parsed_prediction": "FALLING_BEHIND"}
+{"id": "cc_nlp_000755", "text": "Slow down a bit, I'm losing ground, please.", "true_label": "FALLING_BEHIND", "raw_reply": "FALLING_BEHIND", "parsed_prediction": "FALLING_BEHIND"}
+{"id": "cc_nlp_000880", "text": "hey losing ground here, 20 km and growing", "true_label": "FALLING_BEHIND", "raw_reply": "FALLING_BEHIND", "parsed_prediction": "FALLING_BEHIND"}
+{"id": "cc_nlp_000904", "text": "go ahead, im falling back, catch up in 5 minutes lol", "true_label": "FALLING_BEHIND", "raw_reply": "FALLING_BEHIND", "parsed_prediction": "FALLING_BEHIND"}
+{"id": "cc_nlp_001128", "text": "uh behind by 15 miles out, give me 5 minutes", "true_label": "FALLING_BEHIND", "raw_reply": "FALLING_BEHIND", "parsed_prediction": "FALLING_BEHIND"}
+{"id": "cc_nlp_000966", "text": "ok go ahead, im falling back, catch up in a couple hours ngl", "true_label": "FALLING_BEHIND", "raw_reply": "FALLING_BEHIND", "parsed_prediction": "FALLING_BEHIND"}
+{"id": "cc_nlp_001169", "text": "Struggling to keep pace, 3 miles behind now, please.", "true_label": "FALLING_BEHIND", "raw_reply": "FALLING_BEHIND", "parsed_prediction": "FALLING_BEHIND"}
+{"id": "cc_nlp_000096", "text": "Go on ahead, I'll catch up in 45 minutes.", "true_label": "FALLING_BEHIND", "raw_reply": "FALLING_BEHIND", "parsed_prediction": "FALLING_BEHIND"}
+{"id": "cc_nlp_000577", "text": "cant close the gap, just around the bend behind!", "true_label": "FALLING_BEHIND", "raw_reply": "FALLING_BEHIND", "parsed_prediction": "FALLING_BEHIND"}
+{"id": "cc_nlp_000485", "text": "hey im behind the group, 1 mile back maybe?", "true_label": "FALLING_BEHIND", "raw_reply": "FALLING_BEHIND", "parsed_prediction": "FALLING_BEHIND"}
+{"id": "cc_nlp_000763", "text": "so cant catch up, gap is like half a mile now!", "true_label": "FALLING_BEHIND", "raw_reply": "FALLING_BEHIND", "parsed_prediction": "FALLING_BEHIND"}
+{"id": "cc_nlp_000243", "text": "ok cant close the gap, 3 miles behind?", "true_label": "FALLING_BEHIND", "raw_reply": "FALLING_BEHIND", "parsed_prediction": "FALLING_BEHIND"}
+{"id": "cc_nlp_000104", "text": "ok cant keep the pace, about 8 miles behind now!", "true_label": "FALLING_BEHIND", "raw_reply": "FALLING_BEHIND", "parsed_prediction": "FALLING_BEHIND"}
+{"id": "cc_nlp_000583", "text": "cant catch up, gap is like about 5 miles back now. ngl", "true_label": "FALLING_BEHIND", "raw_reply": "FALLING_BEHIND", "parsed_prediction": "FALLING_BEHIND"}
