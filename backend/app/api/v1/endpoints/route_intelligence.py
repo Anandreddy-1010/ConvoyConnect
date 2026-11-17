@@ -65,53 +65,61 @@ def distance_km(lat1, lon1, lat2, lon2):
 
 
 
+
 def fetch_overpass_data(query):
-    """Fetch nearby facility data using the configured Overpass API."""
-    if not OVERPASS_API_KEY:
+    """Fetch nearby facility data using configured Overpass API endpoints."""
+
+    if not OVERPASS_URLS:
         raise HTTPException(
-            status_code=500,
-            detail="OVERPASS_API_KEY is missing from the backend .env file.",
+            status_code=502,
+            detail="No Overpass API endpoints are configured.",
         )
 
-    overpass_url = (
-        f"https://api.overpass.ch/v1/{OVERPASS_API_KEY}/interpreter"
+    last_error = None
+
+    for overpass_url in OVERPASS_URLS:
+        request = Request(
+            overpass_url,
+            data=urlencode({"data": query}).encode("utf-8"),
+            headers={
+                "User-Agent": "ConvoyConnect/1.0",
+                "Accept": "application/json",
+                "Content-Type": "application/x-www-form-urlencoded",
+            },
+            method="POST",
+        )
+
+        try:
+            with urlopen(request, timeout=60) as response:
+                data = json.loads(response.read().decode("utf-8"))
+
+                if "remark" in data:
+                    last_error = data["remark"]
+                    continue
+
+                return data
+
+        except HTTPError as exc:
+            last_error = f"HTTP {exc.code}"
+            continue
+
+        except (
+            IncompleteRead,
+            URLError,
+            TimeoutError,
+            OSError,
+            ValueError,
+        ) as exc:
+            last_error = type(exc).__name__
+            continue
+
+    raise HTTPException(
+        status_code=502,
+        detail=(
+            "All Overpass servers failed. "
+            f"Last error: {last_error}"
+        ),
     )
-
-    request = Request(
-        overpass_url,
-        data=urlencode({"data": query}).encode("utf-8"),
-        headers={
-            "User-Agent": "ConvoyConnect/1.0",
-            "Accept": "application/json",
-            "Content-Type": "application/x-www-form-urlencoded",
-        },
-        method="POST",
-    )
-
-    try:
-        with urlopen(request, timeout=60) as response:
-            data = json.loads(response.read().decode("utf-8"))
-
-            if "remark" in data:
-                raise HTTPException(
-                    status_code=502,
-                    detail=f"Overpass query warning: {data['remark']}",
-                )
-
-            return data
-
-    except HTTPError as exc:
-        raise HTTPException(
-            status_code=502,
-            detail=f"Overpass API returned HTTP {exc.code}. Please try again.",
-        ) from exc
-
-    except (IncompleteRead, URLError, TimeoutError, OSError, ValueError) as exc:
-        raise HTTPException(
-            status_code=502,
-            detail=f"Could not retrieve nearby facilities: {type(exc).__name__}.",
-        ) from exc
-
 
 @router.get("/nearby", summary="Find nearby riding facilities")
 def nearby_facilities(
@@ -201,4 +209,3 @@ def nearby_facilities(
             "straight-line estimates, not road distances."
         ),
     }
-
