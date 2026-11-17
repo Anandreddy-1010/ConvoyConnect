@@ -1,18 +1,19 @@
+
 from http.client import IncompleteRead
 
 import json
 import math
+import os
+
+from dotenv import load_dotenv
 from urllib.error import HTTPError, URLError
 from urllib.parse import urlencode
 from urllib.request import Request, urlopen
 
 from fastapi import APIRouter, HTTPException, Query
 
+
 router = APIRouter()
-
-
-import os
-from dotenv import load_dotenv
 
 load_dotenv("overpass.env")
 
@@ -27,6 +28,7 @@ OVERPASS_URLS = (
         "https://overpass.private.coffee/api/interpreter",
     ]
 )
+
 FACILITY_FILTERS = {
     "fuel": '["amenity"="fuel"]',
     "restaurant": '["amenity"~"restaurant|cafe|fast_food"]',
@@ -34,6 +36,7 @@ FACILITY_FILTERS = {
     "medical": '["amenity"~"hospital|clinic|doctors|pharmacy"]',
     "accommodation": '["tourism"~"hotel|guest_house|motel|hostel|resort"]',
 }
+
 LABELS = {
     "fuel": "Petrol pump / fuel station",
     "restaurant": "Restaurant / food stop",
@@ -45,6 +48,7 @@ LABELS = {
 
 def distance_km(lat1, lon1, lat2, lon2):
     """Calculate straight-line distance using the Haversine formula."""
+
     radius = 6371.0
 
     lat1, lon1, lat2, lon2 = map(
@@ -64,8 +68,6 @@ def distance_km(lat1, lon1, lat2, lon2):
     return radius * 2 * math.asin(math.sqrt(min(1.0, a)))
 
 
-
-
 def fetch_overpass_data(query):
     """Fetch nearby facility data using configured Overpass API endpoints."""
 
@@ -78,6 +80,7 @@ def fetch_overpass_data(query):
     last_error = None
 
     for overpass_url in OVERPASS_URLS:
+
         request = Request(
             overpass_url,
             data=urlencode({"data": query}).encode("utf-8"),
@@ -95,12 +98,26 @@ def fetch_overpass_data(query):
 
                 if "remark" in data:
                     last_error = data["remark"]
+                    print(
+                        f"Overpass failed: {overpass_url} - {last_error}"
+                    )
                     continue
 
                 return data
 
         except HTTPError as exc:
-            last_error = f"HTTP {exc.code}"
+            try:
+                error_body = exc.read().decode(
+                    "utf-8", errors="replace"
+                )[:300]
+            except Exception:
+                error_body = "No response body"
+
+            last_error = f"HTTP {exc.code}: {error_body}"
+
+            print(
+                f"Overpass failed: {overpass_url} - {last_error}"
+            )
             continue
 
         except (
@@ -110,7 +127,12 @@ def fetch_overpass_data(query):
             OSError,
             ValueError,
         ) as exc:
-            last_error = type(exc).__name__
+
+            last_error = f"{type(exc).__name__}: {exc}"
+
+            print(
+                f"Overpass failed: {overpass_url} - {last_error}"
+            )
             continue
 
     raise HTTPException(
@@ -120,6 +142,7 @@ def fetch_overpass_data(query):
             f"Last error: {last_error}"
         ),
     )
+
 
 @router.get("/nearby", summary="Find nearby riding facilities")
 def nearby_facilities(
@@ -133,6 +156,7 @@ def nearby_facilities(
     limit: int = Query(20, ge=1, le=100),
 ):
     """Find mapped facilities around the supplied GPS coordinates."""
+
     tag_filter = FACILITY_FILTERS[facility_type]
     radius_m = int(radius_km * 1000)
 
@@ -149,6 +173,7 @@ def nearby_facilities(
     seen = set()
 
     for element in data.get("elements", []):
+
         tags = element.get("tags", {})
 
         lat = element.get("lat")
@@ -169,15 +194,19 @@ def nearby_facilities(
 
         seen.add(element_id)
 
+        default_names = {
+            "fuel": "Petrol Pump",
+            "restaurant": "Restaurant / Cafe",
+            "repair": "Bike Repair Shop",
+            "medical": "Medical Facility",
+            "accommodation": "Room / Stay",
+        }
+
         results.append({
             "id": element_id,
-            "name": tags.get("name") or {
-    "fuel": "Petrol Pump",
-    "restaurant": "Restaurant / Cafe",
-    "repair": "Bike Repair Shop",
-    "medical": "Medical Facility",
-    "accommodation": "Room / Stay",
-}.get(facility_type, "Unnamed facility"),
+            "name": tags.get("name") or default_names.get(
+                facility_type, "Unnamed facility"
+            ),
             "type": facility_type,
             "category": LABELS[facility_type],
             "latitude": lat,
