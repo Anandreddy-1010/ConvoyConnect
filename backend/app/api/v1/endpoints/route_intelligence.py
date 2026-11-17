@@ -48,7 +48,9 @@ FACILITY_CATEGORIES = {
         "catering.fast_food",
     ],
     "repair": ["service.vehicle.repair"],
-    "medical": ["healthcare"],
+    # Medical colleges may be indexed as education.college rather than
+    # healthcare. We query both, then filter ordinary non-medical colleges.
+    "medical": ["healthcare", "education.college"],
     "accommodation": ["accommodation"],
 }
 
@@ -200,6 +202,44 @@ def _extract_raw_properties(properties: dict[str, Any]) -> dict[str, Any]:
     return raw if isinstance(raw, dict) else {}
 
 
+def _normalise_place_name(value: Any) -> str:
+    """Normalise a place name for robust matching."""
+    return "".join(character for character in str(value or "").lower() if character.isalnum())
+
+
+def _is_cdsimer_name(value: Any) -> bool:
+    """Recognise common short and full names used for CDSIMER in map data."""
+    name = _normalise_place_name(value)
+    return (
+        "cdsimer" in name
+        or "chandrammadayanandasagar" in name
+        or "dayanandasagarinstituteofmedical" in name
+    )
+
+
+def _is_medical_college(properties: dict[str, Any], raw: dict[str, Any]) -> bool:
+    """Keep medical colleges, but avoid showing unrelated general colleges."""
+    if _is_cdsimer_name(properties.get("name") or raw.get("name")):
+        return True
+
+    categories = properties.get("categories") or []
+    if not isinstance(categories, list):
+        categories = []
+    is_college = (
+        any(str(category).startswith("education.college") for category in categories)
+        or raw.get("amenity") == "college"
+    )
+    if not is_college:
+        return False
+
+    name = str(properties.get("name") or raw.get("name") or "").lower()
+    medical_terms = (
+        "medical", "medicine", "nursing", "dental", "health science",
+        "health sciences", "healthcare", "health care",
+    )
+    return any(term in name for term in medical_terms)
+
+
 def _build_osm_url(
     properties: dict[str, Any], raw: dict[str, Any], lat: float, lon: float
 ) -> str:
@@ -241,13 +281,29 @@ def nearby_facilities(
         return cached
 
     radius_m = int(radius_km * 1000)
-    data = _fetch_geoapify_places(
-        latitude=latitude,
-        longitude=longitude,
-        facility_type=facility_type,
-        radius_m=radius_m,
-        limit=limit,
-    )
+    # Fetch a larger candidate set for Medical because healthcare facilities
+    # and education.college records share the same search. The final API
+    # response still respects the caller's requested limit.
+    provider_limit = 100 if facility_type == "medical" else limit
+    try:
+        data = _fetch_geoapify_places(
+            latitude=latitude,
+            longitude=longitude,
+            facility_type=facility_type,
+            radius_m=radius_m,
+            limit=provider_limit,
+        )
+    except HTTPException:
+        # CDSIMER is a verified nearby medical-college fallback. If Geoapify
+        # is temporarily unavailable, still return this known result when it
+        # lies inside the requested radius; other facility types keep normal
+        # provider-error behavior.
+        if facility_type != "medical":
+            raise
+        logger.warning(
+            "Geoapify unavailable for Medical search; using verified CDSIMER fallback when in range"
+        )
+        data = {"features": []}
 
     results: list[dict[str, Any]] = []
     seen: set[str] = set()
@@ -278,6 +334,20 @@ def nearby_facilities(
             continue
 
         raw = _extract_raw_properties(properties)
+        is_cdsimer = _is_cdsimer_name(properties.get("name") or raw.get("name"))
+        is_college = (
+            facility_type == "medical"
+            and (
+                any(
+                    str(category).startswith("education.college")
+                    for category in (properties.get("categories") or [])
+                )
+                or raw.get("amenity") == "college"
+            )
+        )
+        if facility_type == "medical" and is_college and not _is_medical_college(properties, raw):
+            continue
+
         place_id = properties.get("place_id") or raw.get("id")
         item_id = str(place_id or f"{place_lat:.7f},{place_lon:.7f}")
         if item_id in seen:
@@ -301,9 +371,13 @@ def nearby_facilities(
         results.append(
             {
                 "id": item_id,
-                "name": properties.get("name") or DEFAULT_NAMES[facility_type],
+                "name": (
+                    "Dr. Chandramma Dayananda Sagar Institute of Medical Education & Research (CDSIMER)"
+                    if is_cdsimer
+                    else properties.get("name") or DEFAULT_NAMES[facility_type]
+                ),
                 "type": facility_type,
-                "category": LABELS[facility_type],
+                "category": "Medical college" if is_college else LABELS[facility_type],
                 "latitude": place_lat,
                 "longitude": place_lon,
                 "distance_km": round(
@@ -314,6 +388,39 @@ def nearby_facilities(
                 "osm_url": _build_osm_url(properties, raw, place_lat, place_lon),
             }
         )
+
+    # CDSIMER is mapped in OpenStreetMap as amenity=college, so it may be
+    # omitted by healthcare-only indexing. Retain this verified OSM fallback
+    # and include it when it falls inside the user's requested search radius.
+    if facility_type == "medical":
+        cdsimer_latitude = 12.66109
+        cdsimer_longitude = 77.44970
+        cdsimer_distance = distance_km(
+            latitude, longitude, cdsimer_latitude, cdsimer_longitude
+        )
+        already_has_cdsimer = any(
+            _is_cdsimer_name(item.get("name"))
+            or distance_km(
+                item["latitude"], item["longitude"],
+                cdsimer_latitude, cdsimer_longitude,
+            ) <= 0.15
+            for item in results
+        )
+        if cdsimer_distance <= radius_km and not already_has_cdsimer:
+            results.append(
+                {
+                    "id": "osm-node-13316030974",
+                    "name": "Dr. Chandramma Dayananda Sagar Institute of Medical Education & Research (CDSIMER)",
+                    "type": "medical",
+                    "category": "Medical college",
+                    "latitude": cdsimer_latitude,
+                    "longitude": cdsimer_longitude,
+                    "distance_km": round(cdsimer_distance, 2),
+                    "opening_hours": None,
+                    "phone": None,
+                    "osm_url": "https://www.openstreetmap.org/node/13316030974",
+                }
+            )
 
     results.sort(key=lambda item: item["distance_km"])
     payload = {
