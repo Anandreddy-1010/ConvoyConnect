@@ -93,7 +93,7 @@ def fetch_overpass_data(query):
         )
 
         try:
-            with urlopen(request, timeout=60) as response:
+            with urlopen(request, timeout=90) as response:
                 data = json.loads(response.read().decode("utf-8"))
 
                 if "remark" in data:
