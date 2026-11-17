@@ -93,7 +93,7 @@ def fetch_overpass_data(query):
         )
 
         try:
-            with urlopen(request, timeout=90) as response:
+            with urlopen(request, timeout=20) as response:
                 data = json.loads(response.read().decode("utf-8"))
 
                 if "remark" in data:
@@ -161,7 +161,7 @@ def nearby_facilities(
     radius_m = int(radius_km * 1000)
 
     query = (
-        "[out:json][timeout:15];("
+        "[out:json][timeout:10];("
         f'node{tag_filter}(around:{radius_m},{latitude},{longitude});'
         f'way{tag_filter}(around:{radius_m},{latitude},{longitude});'
         ");out center tags;"
