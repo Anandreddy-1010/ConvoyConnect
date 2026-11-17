@@ -13,6 +13,7 @@ import os
 import threading
 import time
 from collections import OrderedDict
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from typing import Any
 from urllib.error import HTTPError, URLError
 from urllib.parse import urlencode
@@ -48,9 +49,18 @@ FACILITY_CATEGORIES = {
         "catering.fast_food",
     ],
     "repair": ["service.vehicle.repair"],
-    # Medical colleges may be indexed as education.college rather than
-    # healthcare. We query both, then filter ordinary non-medical colleges.
-    "medical": ["healthcare", "education.college"],
+    # Query the documented healthcare subcategories explicitly so hospitals,
+    # clinics, dentists and pharmacies are all included. Medical colleges and
+    # universities are added separately because they are education POIs.
+    "medical": [
+        "healthcare.hospital",
+        "healthcare.clinic_or_praxis",
+        "healthcare.dentist",
+        "healthcare.pharmacy",
+        "education.college",
+        "education.university",
+        "emergency.first_aid",
+    ],
     "accommodation": ["accommodation"],
 }
 
@@ -124,6 +134,8 @@ def _fetch_geoapify_places(
     facility_type: str,
     radius_m: int,
     limit: int,
+    categories: list[str] | None = None,
+    offset: int = 0,
 ) -> dict[str, Any]:
     """Fetch one nearby category from Geoapify and validate its response."""
     if not GEOAPIFY_API_KEY:
@@ -133,10 +145,11 @@ def _fetch_geoapify_places(
         )
 
     params = {
-        "categories": ",".join(FACILITY_CATEGORIES[facility_type]),
+        "categories": ",".join(categories or FACILITY_CATEGORIES[facility_type]),
         "filter": f"circle:{longitude},{latitude},{radius_m}",
         "bias": f"proximity:{longitude},{latitude}",
         "limit": limit,
+        "offset": offset,
         "lang": "en",
         "apiKey": GEOAPIFY_API_KEY,
     }
@@ -193,6 +206,72 @@ def _fetch_geoapify_places(
     return data
 
 
+
+def _fetch_all_medical_places(
+    latitude: float,
+    longitude: float,
+    radius_m: int,
+) -> dict[str, Any]:
+    """Fetch healthcare POIs and medical colleges independently, then merge.
+
+    Keeping these as two category searches prevents education POIs from
+    crowding or masking healthcare results. Geoapify allows up to 500 results
+    per page, so continue pagination whenever a page is full.
+    """
+    category_groups = {
+        "healthcare": ["healthcare"],
+        "medical_education": ["education.college", "education.university"],
+    }
+
+    def fetch_group(group_categories: list[str]) -> list[dict[str, Any]]:
+        collected: list[dict[str, Any]] = []
+        offset = 0
+        page_size = 500
+        max_pages = 4  # Safety cap: at most 2,000 results per category group.
+        for _ in range(max_pages):
+            page = _fetch_geoapify_places(
+                latitude=latitude,
+                longitude=longitude,
+                facility_type="medical",
+                radius_m=radius_m,
+                limit=page_size,
+                categories=group_categories,
+                offset=offset,
+            )
+            features = page.get("features", [])
+            if not isinstance(features, list):
+                break
+            collected.extend(item for item in features if isinstance(item, dict))
+            if len(features) < page_size:
+                break
+            offset += page_size
+        return collected
+
+    all_features: list[dict[str, Any]] = []
+    failures: list[HTTPException] = []
+    # Run healthcare and medical-college lookups separately in parallel.
+    with ThreadPoolExecutor(max_workers=2) as executor:
+        future_to_group = {
+            executor.submit(fetch_group, group_categories): group_name
+            for group_name, group_categories in category_groups.items()
+        }
+        for future in as_completed(future_to_group):
+            group_name = future_to_group[future]
+            try:
+                all_features.extend(future.result())
+                logger.info("Geoapify Medical category search completed: %s", group_name)
+            except HTTPException as exc:
+                failures.append(exc)
+                logger.warning("Geoapify Medical category search failed: %s", group_name)
+
+    if not all_features and len(failures) == len(category_groups):
+        raise failures[0]
+
+    # Return one combined Features collection. The endpoint performs final
+    # distance checks, type filtering, sorting and duplicate removal.
+    return {"features": all_features}
+
+
 def _extract_raw_properties(properties: dict[str, Any]) -> dict[str, Any]:
     """Get source OSM properties when Geoapify includes them."""
     datasource = properties.get("datasource") or {}
@@ -226,8 +305,11 @@ def _is_medical_college(properties: dict[str, Any], raw: dict[str, Any]) -> bool
     if not isinstance(categories, list):
         categories = []
     is_college = (
-        any(str(category).startswith("education.college") for category in categories)
-        or raw.get("amenity") == "college"
+        any(
+            str(category).startswith(("education.college", "education.university"))
+            for category in categories
+        )
+        or raw.get("amenity") in {"college", "university"}
     )
     if not is_college:
         return False
@@ -281,18 +363,23 @@ def nearby_facilities(
         return cached
 
     radius_m = int(radius_km * 1000)
-    # Fetch a larger candidate set for Medical because healthcare facilities
-    # and education.college records share the same search. The final API
-    # response still respects the caller's requested limit.
-    provider_limit = 100 if facility_type == "medical" else limit
+    # Medical uses two independent searches (healthcare and medical education)
+    # and paginates each result set. Other categories retain the caller limit.
     try:
-        data = _fetch_geoapify_places(
-            latitude=latitude,
-            longitude=longitude,
-            facility_type=facility_type,
-            radius_m=radius_m,
-            limit=provider_limit,
-        )
+        if facility_type == "medical":
+            data = _fetch_all_medical_places(
+                latitude=latitude,
+                longitude=longitude,
+                radius_m=radius_m,
+            )
+        else:
+            data = _fetch_geoapify_places(
+                latitude=latitude,
+                longitude=longitude,
+                facility_type=facility_type,
+                radius_m=radius_m,
+                limit=limit,
+            )
     except HTTPException:
         # CDSIMER is a verified nearby medical-college fallback. If Geoapify
         # is temporarily unavailable, still return this known result when it
@@ -333,16 +420,20 @@ def nearby_facilities(
         except (TypeError, ValueError):
             continue
 
+        actual_distance = distance_km(latitude, longitude, place_lat, place_lon)
+        if actual_distance > radius_km:
+            continue
+
         raw = _extract_raw_properties(properties)
         is_cdsimer = _is_cdsimer_name(properties.get("name") or raw.get("name"))
         is_college = (
             facility_type == "medical"
             and (
                 any(
-                    str(category).startswith("education.college")
+                    str(category).startswith(("education.college", "education.university"))
                     for category in (properties.get("categories") or [])
                 )
-                or raw.get("amenity") == "college"
+                or raw.get("amenity") in {"college", "university"}
             )
         )
         if facility_type == "medical" and is_college and not _is_medical_college(properties, raw):
@@ -350,7 +441,27 @@ def nearby_facilities(
 
         place_id = properties.get("place_id") or raw.get("id")
         item_id = str(place_id or f"{place_lat:.7f},{place_lon:.7f}")
-        if item_id in seen:
+        place_name = properties.get("name") or raw.get("name") or DEFAULT_NAMES[facility_type]
+        normalised_name = _normalise_place_name(place_name)
+
+        # A single hospital/campus can be represented by multiple OSM objects
+        # (for example, separate building polygons). Collapse same-name
+        # records within 300 m so the UI shows one result per real facility.
+        is_duplicate = item_id in seen
+        if not is_duplicate and is_cdsimer:
+            # CDSIMER may be represented by several campus polygons/entrances;
+            # it is one destination, so keep only one entry for that institution.
+            is_duplicate = any(_is_cdsimer_name(existing.get("name")) for existing in results)
+        if not is_duplicate and normalised_name:
+            for existing in results:
+                if _normalise_place_name(existing.get("name")) != normalised_name:
+                    continue
+                if distance_km(
+                    existing["latitude"], existing["longitude"], place_lat, place_lon
+                ) <= 0.30:
+                    is_duplicate = True
+                    break
+        if is_duplicate:
             continue
         seen.add(item_id)
 
@@ -374,24 +485,22 @@ def nearby_facilities(
                 "name": (
                     "Dr. Chandramma Dayananda Sagar Institute of Medical Education & Research (CDSIMER)"
                     if is_cdsimer
-                    else properties.get("name") or DEFAULT_NAMES[facility_type]
+                    else place_name
                 ),
                 "type": facility_type,
                 "category": "Medical college" if is_college else LABELS[facility_type],
                 "latitude": place_lat,
                 "longitude": place_lon,
-                "distance_km": round(
-                    distance_km(latitude, longitude, place_lat, place_lon), 2
-                ),
+                "distance_km": round(actual_distance, 2),
                 "opening_hours": opening_hours,
                 "phone": phone,
                 "osm_url": _build_osm_url(properties, raw, place_lat, place_lon),
             }
         )
 
-    # CDSIMER is mapped in OpenStreetMap as amenity=college, so it may be
-    # omitted by healthcare-only indexing. Retain this verified OSM fallback
-    # and include it when it falls inside the user's requested search radius.
+    # CDSIMER is mapped as a college and may be omitted by healthcare-only
+    # indexing. Keep one verified fallback when it is within the search radius;
+    # the 300 m duplicate check above prevents duplicate campus entries.
     if facility_type == "medical":
         cdsimer_latitude = 12.66109
         cdsimer_longitude = 77.44970
@@ -403,7 +512,7 @@ def nearby_facilities(
             or distance_km(
                 item["latitude"], item["longitude"],
                 cdsimer_latitude, cdsimer_longitude,
-            ) <= 0.15
+            ) <= 0.30
             for item in results
         )
         if cdsimer_distance <= radius_km and not already_has_cdsimer:
@@ -423,13 +532,17 @@ def nearby_facilities(
             )
 
     results.sort(key=lambda item: item["distance_km"])
+    # Medical is an "all nearby facilities" view: return every deduplicated
+    # result retrieved within the selected radius instead of silently clipping
+    # it to the frontend's older limit=20 default.
+    response_limit = len(results) if facility_type == "medical" else limit
     payload = {
         "source": "Geoapify Places API / OpenStreetMap",
         "facility_type": facility_type,
         "center": {"latitude": latitude, "longitude": longitude},
         "radius_km": radius_km,
-        "count": min(len(results), limit),
-        "results": results[:limit],
+        "count": min(len(results), response_limit),
+        "results": results[:response_limit],
         "disclaimer": (
             "Place coverage may be incomplete. Distances are straight-line "
             "estimates, not road distances."
