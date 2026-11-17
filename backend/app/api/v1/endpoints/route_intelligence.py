@@ -1,15 +1,20 @@
 
-from http.client import IncompleteRead
-
 import json
 import math
 import os
-
-from dotenv import load_dotenv
+import time
+from concurrent.futures import (
+    ThreadPoolExecutor,
+    wait,
+    FIRST_COMPLETED,
+)
+from threading import Lock
 from urllib.error import HTTPError, URLError
 from urllib.parse import urlencode
 from urllib.request import Request, urlopen
 
+from http.client import IncompleteRead
+from dotenv import load_dotenv
 from fastapi import APIRouter, HTTPException, Query
 
 
@@ -45,6 +50,11 @@ LABELS = {
     "accommodation": "Rooms / Stays",
 }
 
+# Cache successful Overpass responses for two minutes.
+CACHE_TTL = 120
+_facility_cache = {}
+_cache_lock = Lock()
+
 
 def distance_km(lat1, lon1, lat2, lon2):
     """Calculate straight-line distance using the Haversine formula."""
@@ -68,8 +78,65 @@ def distance_km(lat1, lon1, lat2, lon2):
     return radius * 2 * math.asin(math.sqrt(min(1.0, a)))
 
 
-def fetch_overpass_data(query):
-    """Fetch nearby facility data using configured Overpass API endpoints."""
+def fetch_from_server(overpass_url, query):
+    """Fetch data from one Overpass server."""
+
+    request = Request(
+        overpass_url,
+        data=urlencode({"data": query}).encode("utf-8"),
+        headers={
+            "User-Agent": "ConvoyConnect/1.0",
+            "Accept": "application/json",
+            "Content-Type": "application/x-www-form-urlencoded",
+        },
+        method="POST",
+    )
+
+    try:
+        with urlopen(request, timeout=12) as response:
+            data = json.loads(response.read().decode("utf-8"))
+
+        if "remark" in data:
+            raise RuntimeError(data["remark"])
+
+        return data
+
+    except HTTPError as exc:
+        try:
+            body = exc.read().decode(
+                "utf-8", errors="replace"
+            )[:200]
+        except Exception:
+            body = "No response body"
+
+        raise RuntimeError(f"HTTP {exc.code}: {body}") from exc
+
+    except (
+        IncompleteRead,
+        URLError,
+        TimeoutError,
+        OSError,
+        ValueError,
+    ) as exc:
+        raise RuntimeError(
+            f"{type(exc).__name__}: {exc}"
+        ) from exc
+
+
+def fetch_overpass_data(query, cache_key):
+    """Fetch from multiple Overpass servers simultaneously."""
+
+    now = time.monotonic()
+
+    with _cache_lock:
+        cached = _facility_cache.get(cache_key)
+
+        if cached and now - cached["time"] < CACHE_TTL:
+            print("Nearby facilities: cache hit")
+            return cached["data"]
+
+        if cached:
+            _facility_cache.pop(cache_key, None)
 
     if not OVERPASS_URLS:
         raise HTTPException(
@@ -77,70 +144,74 @@ def fetch_overpass_data(query):
             detail="No Overpass API endpoints are configured.",
         )
 
-    last_error = None
+    executor = ThreadPoolExecutor(
+        max_workers=len(OVERPASS_URLS)
+    )
 
-    for overpass_url in OVERPASS_URLS:
+    futures = {
+        executor.submit(fetch_from_server, url, query): url
+        for url in OVERPASS_URLS
+    }
 
-        request = Request(
-            overpass_url,
-            data=urlencode({"data": query}).encode("utf-8"),
-            headers={
-                "User-Agent": "ConvoyConnect/1.0",
-                "Accept": "application/json",
-                "Content-Type": "application/x-www-form-urlencoded",
-            },
-            method="POST",
+    pending = set(futures)
+    errors = []
+
+    try:
+        deadline = time.monotonic() + 14
+
+        while pending:
+            remaining = deadline - time.monotonic()
+
+            if remaining <= 0:
+                break
+
+            completed, pending = wait(
+                pending,
+                timeout=remaining,
+                return_when=FIRST_COMPLETED,
+            )
+
+            if not completed:
+                break
+
+            for future in completed:
+                server = futures[future]
+
+                try:
+                    data = future.result()
+
+                    with _cache_lock:
+                        _facility_cache[cache_key] = {
+                            "time": time.monotonic(),
+                            "data": data,
+                        }
+
+                    print(
+                        f"Nearby facilities: successful server {server}"
+                    )
+
+                    return data
+
+                except Exception as exc:
+                    error = f"{server}: {exc}"
+                    errors.append(error)
+                    print(f"Overpass failed: {error}")
+
+    finally:
+        executor.shutdown(
+            wait=False,
+            cancel_futures=True,
         )
 
-        try:
-            with urlopen(request, timeout=20) as response:
-                data = json.loads(response.read().decode("utf-8"))
-
-                if "remark" in data:
-                    last_error = data["remark"]
-                    print(
-                        f"Overpass failed: {overpass_url} - {last_error}"
-                    )
-                    continue
-
-                return data
-
-        except HTTPError as exc:
-            try:
-                error_body = exc.read().decode(
-                    "utf-8", errors="replace"
-                )[:300]
-            except Exception:
-                error_body = "No response body"
-
-            last_error = f"HTTP {exc.code}: {error_body}"
-
-            print(
-                f"Overpass failed: {overpass_url} - {last_error}"
-            )
-            continue
-
-        except (
-            IncompleteRead,
-            URLError,
-            TimeoutError,
-            OSError,
-            ValueError,
-        ) as exc:
-
-            last_error = f"{type(exc).__name__}: {exc}"
-
-            print(
-                f"Overpass failed: {overpass_url} - {last_error}"
-            )
-            continue
+    last_error = (
+        "; ".join(errors[-3:])
+        if errors
+        else "All Overpass servers timed out."
+    )
 
     raise HTTPException(
         status_code=502,
-        detail=(
-            "All Overpass servers failed. "
-            f"Last error: {last_error}"
-        ),
+        detail=f"Nearby facilities unavailable: {last_error}",
     )
 
 
@@ -160,17 +231,36 @@ def nearby_facilities(
     tag_filter = FACILITY_FILTERS[facility_type]
     radius_m = int(radius_km * 1000)
 
+    # Normalize coordinates so nearby GPS updates can reuse cached data.
+    search_latitude = round(latitude, 3)
+    search_longitude = round(longitude, 3)
+
+    cache_key = (
+        search_latitude,
+        search_longitude,
+        facility_type,
+        radius_m,
+    )
+
     query = (
         "[out:json][timeout:10];("
-        f'node{tag_filter}(around:{radius_m},{latitude},{longitude});'
-        f'way{tag_filter}(around:{radius_m},{latitude},{longitude});'
+        f'node{tag_filter}(around:{radius_m},{search_latitude},{search_longitude});'
+        f'way{tag_filter}(around:{radius_m},{search_latitude},{search_longitude});'
         ");out center tags;"
     )
 
-    data = fetch_overpass_data(query)
+    data = fetch_overpass_data(query, cache_key)
 
     results = []
     seen = set()
+
+    default_names = {
+        "fuel": "Petrol Pump",
+        "restaurant": "Restaurant / Cafe",
+        "repair": "Bike Repair Shop",
+        "medical": "Medical Facility",
+        "accommodation": "Room / Stay",
+    }
 
     for element in data.get("elements", []):
 
@@ -193,14 +283,6 @@ def nearby_facilities(
             continue
 
         seen.add(element_id)
-
-        default_names = {
-            "fuel": "Petrol Pump",
-            "restaurant": "Restaurant / Cafe",
-            "repair": "Bike Repair Shop",
-            "medical": "Medical Facility",
-            "accommodation": "Room / Stay",
-        }
 
         results.append({
             "id": element_id,
