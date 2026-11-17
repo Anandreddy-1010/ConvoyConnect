@@ -1,4 +1,8 @@
+"""Nearby riding-facility discovery backed by OpenStreetMap Overpass.
 
+Keeps the existing /nearby API response contract while adding parallel
+provider fallback, bounded request timeouts, and a short in-process cache.
+"""
 
 from __future__ import annotations
 
@@ -28,10 +32,11 @@ load_dotenv("overpass.env")
 OVERPASS_API_KEY = os.getenv("OVERPASS_API_KEY", "").strip()
 
 _DEFAULT_OVERPASS_URLS = [
-    "https://overpass-api.de/api/interpreter",
-    "https://overpass.kumi.systems/api/interpreter",
+    # VK Maps global Overpass instance; currently listed as an available
+    # global-data provider by the OpenStreetMap wiki.
+    "https://maps.mail.ru/osm/tools/overpass/api/interpreter",
     "https://overpass.private.coffee/api/interpreter",
-    "https://overpass.nchc.org.tw/api/interpreter",
+    "https://overpass-api.de/api/interpreter",
 ]
 
 
@@ -54,8 +59,10 @@ def _get_overpass_urls() -> list[str]:
 
 
 OVERPASS_URLS = _get_overpass_urls()
+# VK Maps has historically taken around 13-17 seconds for some queries,
+# so allow enough time for that fallback while keeping the request bounded.
 OVERPASS_REQUEST_TIMEOUT = max(
-    3.0, min(float(os.getenv("OVERPASS_REQUEST_TIMEOUT", "6")), 15.0)
+    5.0, min(float(os.getenv("OVERPASS_REQUEST_TIMEOUT", "18")), 20.0)
 )
 OVERPASS_CACHE_TTL_SECONDS = max(
     30, min(int(os.getenv("OVERPASS_CACHE_TTL_SECONDS", "300")), 3600)
