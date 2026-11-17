@@ -1,38 +1,71 @@
 
+
+from __future__ import annotations
+
 import json
+import logging
 import math
 import os
+import threading
 import time
-from concurrent.futures import (
-    ThreadPoolExecutor,
-    wait,
-    FIRST_COMPLETED,
-)
-from threading import Lock
+from collections import OrderedDict
+from concurrent.futures import FIRST_COMPLETED, ThreadPoolExecutor, wait
+from http.client import IncompleteRead
 from urllib.error import HTTPError, URLError
 from urllib.parse import urlencode
 from urllib.request import Request, urlopen
 
-from http.client import IncompleteRead
 from dotenv import load_dotenv
 from fastapi import APIRouter, HTTPException, Query
 
-
 router = APIRouter()
+logger = logging.getLogger(__name__)
 
+# Optional local file for development. On Altare, configure variables in the
+# deployment environment; do not commit overpass.env or API credentials.
 load_dotenv("overpass.env")
 
-OVERPASS_API_KEY = os.getenv("OVERPASS_API_KEY")
+OVERPASS_API_KEY = os.getenv("OVERPASS_API_KEY", "").strip()
 
-OVERPASS_URLS = (
-    [f"https://api.overpass.ch/v1/{OVERPASS_API_KEY}/interpreter"]
-    if OVERPASS_API_KEY
-    else [
-        "https://overpass-api.de/api/interpreter",
-        "https://overpass.kumi.systems/api/interpreter",
-        "https://overpass.private.coffee/api/interpreter",
-    ]
+_DEFAULT_OVERPASS_URLS = [
+    "https://overpass-api.de/api/interpreter",
+    "https://overpass.kumi.systems/api/interpreter",
+    "https://overpass.private.coffee/api/interpreter",
+    "https://overpass.nchc.org.tw/api/interpreter",
+]
+
+
+def _get_overpass_urls() -> list[str]:
+    """Build the provider list, allowing deployment-time overrides."""
+    configured = os.getenv("OVERPASS_API_URLS") or os.getenv("OVERPASS_URLS")
+    urls: list[str] = []
+
+    if configured:
+        urls.extend(url.strip() for url in configured.split(",") if url.strip())
+
+    # Retain support for the optional keyed Overpass.ch endpoint.
+    if OVERPASS_API_KEY:
+        urls.append(f"https://api.overpass.ch/v1/{OVERPASS_API_KEY}/interpreter")
+
+    urls.extend(_DEFAULT_OVERPASS_URLS)
+
+    # Preserve order and remove duplicates.
+    return list(dict.fromkeys(urls))
+
+
+OVERPASS_URLS = _get_overpass_urls()
+OVERPASS_REQUEST_TIMEOUT = max(
+    3.0, min(float(os.getenv("OVERPASS_REQUEST_TIMEOUT", "6")), 15.0)
 )
+OVERPASS_CACHE_TTL_SECONDS = max(
+    30, min(int(os.getenv("OVERPASS_CACHE_TTL_SECONDS", "300")), 3600)
+)
+OVERPASS_CACHE_MAX_ITEMS = 128
+
+# Small process-local TTL cache. It avoids repeated Overpass calls for the
+# same GPS point/category while keeping stale data bounded in time.
+_CACHE: OrderedDict[str, tuple[float, dict]] = OrderedDict()
+_CACHE_LOCK = threading.Lock()
 
 FACILITY_FILTERS = {
     "fuel": '["amenity"="fuel"]',
@@ -50,118 +83,108 @@ LABELS = {
     "accommodation": "Rooms / Stays",
 }
 
-# Cache successful Overpass responses for two minutes.
-CACHE_TTL = 120
-_facility_cache = {}
-_cache_lock = Lock()
+DEFAULT_NAMES = {
+    "fuel": "Petrol Pump",
+    "restaurant": "Restaurant / Cafe",
+    "repair": "Bike Repair Shop",
+    "medical": "Medical Facility",
+    "accommodation": "Room / Stay",
+}
 
 
-def distance_km(lat1, lon1, lat2, lon2):
+def distance_km(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
     """Calculate straight-line distance using the Haversine formula."""
-
     radius = 6371.0
-
     lat1, lon1, lat2, lon2 = map(
-        math.radians, (lat1, lon1, lat2, lon2)
+        math.radians, (float(lat1), float(lon1), float(lat2), float(lon2))
     )
-
     dlat = lat2 - lat1
     dlon = lon2 - lon1
-
     a = (
         math.sin(dlat / 2) ** 2
-        + math.cos(lat1)
-        * math.cos(lat2)
-        * math.sin(dlon / 2) ** 2
+        + math.cos(lat1) * math.cos(lat2) * math.sin(dlon / 2) ** 2
     )
-
     return radius * 2 * math.asin(math.sqrt(min(1.0, a)))
 
 
-def fetch_from_server(overpass_url, query):
-    """Fetch data from one Overpass server."""
+def _cache_get(key: str) -> dict | None:
+    now = time.monotonic()
+    with _CACHE_LOCK:
+        item = _CACHE.get(key)
+        if item is None:
+            return None
+        expires_at, payload = item
+        if expires_at <= now:
+            _CACHE.pop(key, None)
+            return None
+        _CACHE.move_to_end(key)
+        # JSON round-trip gives the caller an independent copy.
+        return json.loads(json.dumps(payload))
 
+
+def _cache_put(key: str, payload: dict) -> None:
+    with _CACHE_LOCK:
+        _CACHE[key] = (time.monotonic() + OVERPASS_CACHE_TTL_SECONDS, payload)
+        _CACHE.move_to_end(key)
+        while len(_CACHE) > OVERPASS_CACHE_MAX_ITEMS:
+            _CACHE.popitem(last=False)
+
+
+def _request_overpass(overpass_url: str, query: str) -> dict:
+    """Make and validate one Overpass request."""
     request = Request(
         overpass_url,
         data=urlencode({"data": query}).encode("utf-8"),
         headers={
-            "User-Agent": "ConvoyConnect/1.0",
+            "User-Agent": "ConvoyConnect/1.0 (nearby-facility-search)",
             "Accept": "application/json",
             "Content-Type": "application/x-www-form-urlencoded",
         },
         method="POST",
     )
 
-    try:
-        with urlopen(request, timeout=12) as response:
-            data = json.loads(response.read().decode("utf-8"))
+    with urlopen(request, timeout=OVERPASS_REQUEST_TIMEOUT) as response:
+        raw = response.read().decode("utf-8")
 
-        if "remark" in data:
-            raise RuntimeError(data["remark"])
+    data = json.loads(raw)
+    if not isinstance(data, dict):
+        raise ValueError("Overpass returned a non-object JSON response")
+    if data.get("remark"):
+        raise RuntimeError(str(data["remark"])[:240])
+    if not isinstance(data.get("elements", []), list):
+        raise ValueError("Overpass response has an invalid elements field")
 
-        return data
-
-    except HTTPError as exc:
-        try:
-            body = exc.read().decode(
-                "utf-8", errors="replace"
-            )[:200]
-        except Exception:
-            body = "No response body"
-
-        raise RuntimeError(f"HTTP {exc.code}: {body}") from exc
-
-    except (
-        IncompleteRead,
-        URLError,
-        TimeoutError,
-        OSError,
-        ValueError,
-    ) as exc:
-        raise RuntimeError(
-            f"{type(exc).__name__}: {exc}"
-        ) from exc
+    return data
 
 
-def fetch_overpass_data(query, cache_key):
-    """Fetch from multiple Overpass servers simultaneously."""
+def fetch_overpass_data(query: str) -> dict:
+    """Query providers concurrently and return the first valid response.
 
-    now = time.monotonic()
-
-    with _cache_lock:
-        cached = _facility_cache.get(cache_key)
-
-        if cached and now - cached["time"] < CACHE_TTL:
-            print("Nearby facilities: cache hit")
-            return cached["data"]
-
-        if cached:
-            _facility_cache.pop(cache_key, None)
-
-    if not OVERPASS_URLS:
+    All providers are started together. A slow/unavailable provider therefore
+    does not make the user wait for every provider one after another.
+    """
+    urls = _get_overpass_urls()
+    if not urls:
         raise HTTPException(
-            status_code=502,
-            detail="No Overpass API endpoints are configured.",
+            status_code=503,
+            detail="Nearby facility providers are not configured.",
         )
 
-    executor = ThreadPoolExecutor(
-        max_workers=len(OVERPASS_URLS)
-    )
-
-    futures = {
-        executor.submit(fetch_from_server, url, query): url
-        for url in OVERPASS_URLS
+    failures: list[str] = []
+    executor = ThreadPoolExecutor(max_workers=min(len(urls), 8))
+    future_to_url = {
+        executor.submit(_request_overpass, overpass_url, query): overpass_url
+        for overpass_url in urls
     }
+    pending = set(future_to_url)
 
-    pending = set(futures)
-    errors = []
+    # The per-request socket timeout is the main bound. This overall deadline
+    # prevents waiting indefinitely if a provider behaves unexpectedly.
+    deadline = time.monotonic() + OVERPASS_REQUEST_TIMEOUT + 1.5
 
     try:
-        deadline = time.monotonic() + 14
-
         while pending:
             remaining = deadline - time.monotonic()
-
             if remaining <= 0:
                 break
 
@@ -170,48 +193,54 @@ def fetch_overpass_data(query, cache_key):
                 timeout=remaining,
                 return_when=FIRST_COMPLETED,
             )
-
             if not completed:
                 break
 
             for future in completed:
-                server = futures[future]
-
+                overpass_url = future_to_url[future]
                 try:
                     data = future.result()
-
-                    with _cache_lock:
-                        _facility_cache[cache_key] = {
-                            "time": time.monotonic(),
-                            "data": data,
-                        }
-
-                    print(
-                        f"Nearby facilities: successful server {server}"
+                    logger.info(
+                        "Nearby facilities fetched from Overpass provider %s",
+                        overpass_url,
                     )
-
                     return data
-
+                except HTTPError as exc:
+                    message = f"HTTP {exc.code}"
+                except (
+                    IncompleteRead,
+                    URLError,
+                    TimeoutError,
+                    OSError,
+                    ValueError,
+                    RuntimeError,
+                ) as exc:
+                    message = f"{type(exc).__name__}: {exc}"
                 except Exception as exc:
-                    error = f"{server}: {exc}"
-                    errors.append(error)
-                    print(f"Overpass failed: {error}")
+                    message = f"{type(exc).__name__}: {exc}"
+
+                failures.append(f"{overpass_url}: {message}")
+                logger.warning("Overpass provider failed: %s", failures[-1])
 
     finally:
-        executor.shutdown(
-            wait=False,
-            cancel_futures=True,
-        )
+        # Do not wait for a slow provider after another provider has succeeded
+        # or the overall deadline has expired.
+        executor.shutdown(wait=False, cancel_futures=True)
 
-    last_error = (
-        "; ".join(errors[-3:])
-        if errors
-        else "All Overpass servers timed out."
-    )
+    for future in pending:
+        overpass_url = future_to_url[future]
+        if future.cancel():
+            failures.append(f"{overpass_url}: cancelled after request deadline")
+        else:
+            failures.append(f"{overpass_url}: request did not finish before deadline")
 
+    logger.error("All Overpass providers failed: %s", " | ".join(failures))
     raise HTTPException(
-        status_code=502,
-        detail=f"Nearby facilities unavailable: {last_error}",
+        status_code=503,
+        detail=(
+            "Nearby facility data is temporarily unavailable from OpenStreetMap. "
+            "Please try again shortly."
+        ),
     )
 
 
@@ -227,50 +256,43 @@ def nearby_facilities(
     limit: int = Query(20, ge=1, le=100),
 ):
     """Find mapped facilities around the supplied GPS coordinates."""
+    # Round coordinates for cache matching while retaining the original
+    # coordinates in the response. ~11 m precision is sufficient for caching.
+    cache_key = "|".join(
+        (
+            f"{latitude:.4f}",
+            f"{longitude:.4f}",
+            facility_type,
+            f"{radius_km:.1f}",
+            str(limit),
+        )
+    )
+    cached = _cache_get(cache_key)
+    if cached is not None:
+        cached["cached"] = True
+        return cached
 
     tag_filter = FACILITY_FILTERS[facility_type]
     radius_m = int(radius_km * 1000)
-
-    # Normalize coordinates so nearby GPS updates can reuse cached data.
-    search_latitude = round(latitude, 3)
-    search_longitude = round(longitude, 3)
-
-    cache_key = (
-        search_latitude,
-        search_longitude,
-        facility_type,
-        radius_m,
-    )
-
+    query_timeout = max(10, min(int(OVERPASS_REQUEST_TIMEOUT * 2), 25))
     query = (
-        "[out:json][timeout:10];("
-        f'node{tag_filter}(around:{radius_m},{search_latitude},{search_longitude});'
-        f'way{tag_filter}(around:{radius_m},{search_latitude},{search_longitude});'
+        f"[out:json][timeout:{query_timeout}];("
+        f'node{tag_filter}(around:{radius_m},{latitude},{longitude});'
+        f'way{tag_filter}(around:{radius_m},{latitude},{longitude});'
         ");out center tags;"
     )
 
-    data = fetch_overpass_data(query, cache_key)
-
-    results = []
-    seen = set()
-
-    default_names = {
-        "fuel": "Petrol Pump",
-        "restaurant": "Restaurant / Cafe",
-        "repair": "Bike Repair Shop",
-        "medical": "Medical Facility",
-        "accommodation": "Room / Stay",
-    }
+    data = fetch_overpass_data(query)
+    results: list[dict] = []
+    seen: set[str] = set()
 
     for element in data.get("elements", []):
-
-        tags = element.get("tags", {})
-
+        tags = element.get("tags", {}) or {}
         lat = element.get("lat")
         lon = element.get("lon")
 
         if lat is None or lon is None:
-            center = element.get("center", {})
+            center = element.get("center", {}) or {}
             lat = center.get("lat")
             lon = center.get("lon")
 
@@ -278,40 +300,36 @@ def nearby_facilities(
             continue
 
         element_id = f"{element.get('type')}/{element.get('id')}"
-
         if element_id in seen:
             continue
-
         seen.add(element_id)
 
-        results.append({
-            "id": element_id,
-            "name": tags.get("name") or default_names.get(
-                facility_type, "Unnamed facility"
-            ),
-            "type": facility_type,
-            "category": LABELS[facility_type],
-            "latitude": lat,
-            "longitude": lon,
-            "distance_km": round(
-                distance_km(latitude, longitude, lat, lon), 2
-            ),
-            "opening_hours": tags.get("opening_hours"),
-            "phone": tags.get("phone") or tags.get("contact:phone"),
-            "osm_url": (
-                f"https://www.openstreetmap.org/{element_id}"
-            ),
-        })
+        lat = float(lat)
+        lon = float(lon)
+        results.append(
+            {
+                "id": element_id,
+                "name": tags.get("name") or DEFAULT_NAMES.get(
+                    facility_type, "Unnamed facility"
+                ),
+                "type": facility_type,
+                "category": LABELS[facility_type],
+                "latitude": lat,
+                "longitude": lon,
+                "distance_km": round(
+                    distance_km(latitude, longitude, lat, lon), 2
+                ),
+                "opening_hours": tags.get("opening_hours"),
+                "phone": tags.get("phone") or tags.get("contact:phone"),
+                "osm_url": f"https://www.openstreetmap.org/{element_id}",
+            }
+        )
 
     results.sort(key=lambda item: item["distance_km"])
-
-    return {
+    payload = {
         "source": "OpenStreetMap",
         "facility_type": facility_type,
-        "center": {
-            "latitude": latitude,
-            "longitude": longitude,
-        },
+        "center": {"latitude": latitude, "longitude": longitude},
         "radius_km": radius_km,
         "count": min(len(results), limit),
         "results": results[:limit],
@@ -319,4 +337,7 @@ def nearby_facilities(
             "OpenStreetMap coverage may be incomplete. Distances are "
             "straight-line estimates, not road distances."
         ),
+        "cached": False,
     }
+    _cache_put(cache_key, payload)
+    return payload
